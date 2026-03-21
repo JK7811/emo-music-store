@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>慢慢的索嗨 - BrokenLoop</title>
+  <link rel="stylesheet" href="song-detail.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="page">
+    <header class="topbar">
+      <a href="songs.html" class="back">← Back / 返回歌曲页</a>
+      <div class="brand">BROKENLOOP / 单曲详情</div>
+    </header>
+
+    <section class="detail-card">
+      <div class="cover"></div>
+
+      <div class="content">
+        <div class="badge">SINGLE / 单曲</div>
+
+        <h1>
+          慢慢的索嗨
+          <span>Man Man De Suo Hai</span>
+        </h1>
+
+        <div class="artist">BrokenLoop</div>
+
+        <p class="desc">
+          一首关于失眠、备胎、反复心软的歌。
+        </p>
+
+        <p class="desc en">
+          A song about sleepless nights, being the backup, and never fully letting go.
+        </p>
+
+        <div class="price-row">
+          <div class="price">SGD 3.90</div>
+          <div class="preview-note">Preview limited to 30s / 试听限制 30 秒</div>
+        </div>
+
+        <audio controls preload="none" class="player">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+        </audio>
+
+        <div class="actions">
+          <button class="button primary">Buy Song / 购买歌曲</button>
+          <button class="button ghost">Unlock Full / 解锁完整版</button>
+        </div>
+
+        <div class="lyrics-box">
+          <h2>Lyrics Preview / 歌词预览</h2>
+          <p>
+            我就是爱情的索嗨<br />
+            明知道不该还在等待<br />
+            你说他比我更帅<br />
+            所以我只能当你的备胎
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll("audio").forEach((audio) => {
+      audio.addEventListener("timeupdate", () => {
+        if (audio.currentTime >= 30) {
+          audio.pause();
+          audio.currentTime = 30;
+          alert("试听已结束 / Preview ended. Please unlock the full song.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
