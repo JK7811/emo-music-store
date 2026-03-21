@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrokenLoop Admin</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="admin-page">
+    <aside class="sidebar">
+      <div class="logo">BROKENLOOP</div>
+      <div class="logo-sub">Admin Panel / 后台管理</div>
+
+      <nav class="menu">
+        <a href="#" class="menu-item active">Dashboard / 仪表板</a>
+        <a href="#" class="menu-item">Songs / 歌曲管理</a>
+        <a href="#" class="menu-item">Uploads / 上传内容</a>
+        <a href="#" class="menu-item">Pricing / 价格设置</a>
+        <a href="#" class="menu-item">Orders / 订单</a>
+        <a href="#" class="menu-item">Settings / 设置</a>
+      </nav>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <div>
+          <div class="badge">ADMIN / 后台</div>
+          <h1>BrokenLoop Dashboard</h1>
+          <p>Manage your songs, previews, prices, and releases. / 管理你的歌曲、试听、价格与上架内容。</p>
+        </div>
+        <a href="index.html" class="view-site">View Site / 查看网站</a>
+      </header>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <span>Total Songs</span>
+          <strong>12</strong>
+        </div>
+        <div class="stat-card">
+          <span>Published</span>
+          <strong>8</strong>
+        </div>
+        <div class="stat-card">
+          <span>Drafts</span>
+          <strong>4</strong>
+        </div>
+        <div class="stat-card">
+          <span>Orders</span>
+          <strong>23</strong>
+        </div>
+      </section>
+
+      <section class="panel-grid">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Add New Song / 新增歌曲</h2>
+            <span>Draft Mode</span>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              <span>Song Title / 歌名</span>
+              <input type="text" placeholder="e.g. 慢慢的索嗨" />
+            </label>
+
+            <label>
+              <span>Artist / 歌手名</span>
+              <input type="text" placeholder="BrokenLoop" />
+            </label>
+
+            <label>
+              <span>Price / 价格</span>
+              <input type="text" placeholder="SGD 3.90" />
+            </label>
+
+            <label>
+              <span>Status / 状态</span>
+              <select>
+                <option>Draft / 草稿</option>
+                <option>Published / 已上架</option>
+                <option>Hidden / 隐藏</option>
+              </select>
+            </label>
+
+            <label class="full">
+              <span>Description / 简介</span>
+              <textarea placeholder="Write a short song description... / 输入歌曲简介"></textarea>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary">Save Draft / 保存草稿</button>
+            <button class="btn ghost">Publish / 上架</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Upload Area / 上传区域</h2>
+            <span>Media</span>
+          </div>
+
+          <div class="upload-box">
+            <div class="upload-card">
+              <h3>Cover Image / 封面图</h3>
+              <p>Upload song cover artwork</p>
+              <button class="btn ghost">Choose File / 选择文件</button>
+            </div>
+
+            <div class="upload-card">
+              <h3>Preview Audio / 试听音频</h3>
+              <p>30-second preview file</p>
+              <button class="btn ghost">Upload Preview / 上传试听</button>
+            </div>
+
+            <div class="upload-card">
+              <h3>Full Song / 完整版音频</h3>
+              <p>Unlock after purchase</p>
+              <button class="btn ghost">Upload Full Song / 上传完整版</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel songs-panel">
+        <div class="panel-head">
+          <h2>Song Library / 歌曲库</h2>
+          <span>Latest Songs</span>
+        </div>
+
+        <div class="song-list">
+          <div class="song-row">
+            <div>
+              <strong>慢慢的索嗨</strong>
+              <p>BrokenLoop · SGD 3.90</p>
+            </div>
+            <div class="row-actions">
+              <button class="mini-btn">Edit / 编辑</button>
+              <button class="mini-btn">Preview / 预览</button>
+            </div>
+          </div>
+
+          <div class="song-row">
+            <div>
+              <strong>Midnight Loop</strong>
+              <p>BrokenLoop · SGD 4.90</p>
+            </div>
+            <div class="row-actions">
+              <button class="mini-btn">Edit / 编辑</button>
+              <button class="mini-btn">Preview / 预览</button>
+            </div>
+          </div>
+
+          <div class="song-row">
+            <div>
+              <strong>Afterlove Demo</strong>
+              <p>BrokenLoop · Draft</p>
+            </div>
+            <div class="row-actions">
+              <button class="mini-btn">Edit / 编辑</button>
+              <button class="mini-btn">Preview / 预览</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
