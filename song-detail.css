@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(99, 52, 186, 0.42), transparent 30%),
+    radial-gradient(circle at 84% 82%, rgba(190, 45, 106, 0.24), transparent 30%),
+    #050505;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 3px 3px, 3px 3px;
+  mix-blend-mode: soft-light;
+}
+
+.bg-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.glow-1 {
+  width: 320px;
+  height: 320px;
+  background: rgba(126, 87, 255, 0.38);
+  top: -80px;
+  left: -70px;
+}
+
+.glow-2 {
+  width: 380px;
+  height: 380px;
+  background: rgba(236, 72, 153, 0.22);
+  bottom: -120px;
+  right: -100px;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.back {
+  color: rgba(255,255,255,0.86);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.16);
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+}
+
+.brand {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.55);
+}
+
+.detail-card {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(18px);
+}
+
+.cover {
+  min-height: 520px;
+  background:
+    linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.45)),
+    radial-gradient(circle at top left, #9f7aea, transparent 40%),
+    radial-gradient(circle at bottom right, #db2777, transparent 38%),
+    #141414;
+}
+
+.content {
+  padding: 30px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.05);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.08;
+}
+
+h1 span {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  opacity: 0.72;
+  font-weight: 500;
+}
+
+.artist {
+  margin-top: 16px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+}
+
+.desc {
+  margin-top: 22px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.82);
+}
+
+.desc.en {
+  margin-top: 8px;
+  color: rgba(255,255,255,0.68);
+}
+
+.price-row {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.price {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  font-size: 16px;
+}
+
+.preview-note {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+
+.player {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.actions {
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  padding: 13px 18px;
+  border-radius: 999px;
+  font-size: 16px;
+  border: none;
+}
+
+.button.primary {
+  background: #fff;
+  color: #000;
+}
+
+.button.ghost {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+.lyrics-box {
+  margin-top: 28px;
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.03);
+}
+
+.lyrics-box h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+
+.lyrics-box p {
+  margin: 0;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.72);
+}
+
+@media (max-width: 900px) {
+  .detail-card {
+    grid-template-columns: 1fr;
+  }
+
+  .cover {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .content {
+    padding: 22px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  h1 span {
+    font-size: 18px;
+  }
+
+  .desc {
+    font-size: 16px;
+  }
+
+  .button {
+    width: 100%;
+    min-width: 0;
+  }
+}
