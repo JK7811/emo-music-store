@@ -2,44 +2,122 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+}
+
+body {
   min-height: 100vh;
-  background: #000;
+  background: #050505;
   color: #fff;
   font-family: Arial, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.bg-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.bg-glow.top {
+  top: -120px;
+  left: -80px;
+  background: #8b5cf6;
+}
+
+.bg-glow.bottom {
+  right: -100px;
+  bottom: -120px;
+  background: #ec4899;
 }
 
 .hero {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 24px;
-  background:
-    radial-gradient(circle at top, rgba(168, 85, 247, 0.25), transparent 30%),
-    radial-gradient(circle at bottom, rgba(236, 72, 153, 0.2), transparent 30%),
-    #000;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  opacity: 0.75;
+  margin-bottom: 24px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px);
 }
 
 h1 {
-  font-size: 48px;
-  margin: 0 0 16px;
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.1;
+  max-width: 700px;
 }
 
 p {
-  margin: 0 0 24px;
-  opacity: 0.75;
-  font-size: 18px;
+  margin-top: 20px;
+  max-width: 620px;
+  font-size: 17px;
+  line-height: 1.7;
+  opacity: 0.72;
+}
+
+.actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .button {
   display: inline-block;
-  padding: 12px 20px;
-  border: 1px solid rgba(255,255,255,0.2);
+  padding: 12px 22px;
   border-radius: 999px;
-  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: white;
   text-decoration: none;
+  transition: 0.2s ease;
+  background: rgba(255,255,255,0.03);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.08);
+}
+
+.button.primary {
+  background: white;
+  color: black;
+  border-color: white;
+}
+
+.button.primary:hover {
+  background: #f1f1f1;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 34px;
+  }
+
+  p {
+    font-size: 15px;
+  }
 }
