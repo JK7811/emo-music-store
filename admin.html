@@ -24,6 +24,12 @@
         <a href="#" class="menu-item">Orders / 订单</a>
         <a href="#" class="menu-item">Settings / 设置</a>
       </nav>
+
+      <div class="sidebar-box">
+        <h3>Quick Notes / 快速备注</h3>
+        <p>Remember to upload both preview and full version before publishing.</p>
+        <p>上架前记得上传试听版和完整版。</p>
+      </div>
     </aside>
 
     <section class="content">
@@ -31,7 +37,7 @@
         <div>
           <div class="badge">ADMIN / 后台</div>
           <h1>BrokenLoop Dashboard</h1>
-          <p>Manage your songs, previews, prices, and releases. / 管理你的歌曲、试听、价格与上架内容。</p>
+          <p>Manage songs, previews, pricing, publishing, and future orders. / 管理歌曲、试听、价格、上架与未来订单。</p>
         </div>
         <a href="index.html" class="view-site">View Site / 查看网站</a>
       </header>
@@ -53,6 +59,17 @@
           <span>Orders</span>
           <strong>23</strong>
         </div>
+      </section>
+
+      <section class="toolbar">
+        <input type="text" placeholder="Search songs / 搜索歌曲" />
+        <select>
+          <option>All Status / 全部状态</option>
+          <option>Published / 已上架</option>
+          <option>Draft / 草稿</option>
+          <option>Hidden / 隐藏</option>
+        </select>
+        <button class="btn primary">+ Add New Song / 新增歌曲</button>
       </section>
 
       <section class="panel-grid">
@@ -127,46 +144,89 @@
         </div>
       </section>
 
-      <section class="panel songs-panel">
-        <div class="panel-head">
-          <h2>Song Library / 歌曲库</h2>
-          <span>Latest Songs</span>
-        </div>
-
-        <div class="song-list">
-          <div class="song-row">
-            <div>
-              <strong>慢慢的索嗨</strong>
-              <p>BrokenLoop · SGD 3.90</p>
-            </div>
-            <div class="row-actions">
-              <button class="mini-btn">Edit / 编辑</button>
-              <button class="mini-btn">Preview / 预览</button>
-            </div>
+      <section class="bottom-grid">
+        <section class="panel songs-panel">
+          <div class="panel-head">
+            <h2>Song Library / 歌曲库</h2>
+            <span>Latest Songs</span>
           </div>
 
-          <div class="song-row">
-            <div>
-              <strong>Midnight Loop</strong>
-              <p>BrokenLoop · SGD 4.90</p>
+          <div class="song-list">
+            <div class="song-row">
+              <div class="song-meta">
+                <strong>慢慢的索嗨</strong>
+                <p>BrokenLoop · SGD 3.90</p>
+              </div>
+              <div class="status published">Published / 已上架</div>
+              <div class="row-actions">
+                <button class="mini-btn">Edit / 编辑</button>
+                <button class="mini-btn">Preview / 预览</button>
+              </div>
             </div>
-            <div class="row-actions">
-              <button class="mini-btn">Edit / 编辑</button>
-              <button class="mini-btn">Preview / 预览</button>
+
+            <div class="song-row">
+              <div class="song-meta">
+                <strong>Midnight Loop</strong>
+                <p>BrokenLoop · SGD 4.90</p>
+              </div>
+              <div class="status published">Published / 已上架</div>
+              <div class="row-actions">
+                <button class="mini-btn">Edit / 编辑</button>
+                <button class="mini-btn">Preview / 预览</button>
+              </div>
             </div>
+
+            <div class="song-row">
+              <div class="song-meta">
+                <strong>Afterlove Demo</strong>
+                <p>BrokenLoop · Draft</p>
+              </div>
+              <div class="status draft">Draft / 草稿</div>
+              <div class="row-actions">
+                <button class="mini-btn">Edit / 编辑</button>
+                <button class="mini-btn">Preview / 预览</button>
+              </div>
+            </div>
+
+            <div class="song-row">
+              <div class="song-meta">
+                <strong>Empty Seat</strong>
+                <p>BrokenLoop · Hidden</p>
+              </div>
+              <div class="status hidden">Hidden / 隐藏</div>
+              <div class="row-actions">
+                <button class="mini-btn">Edit / 编辑</button>
+                <button class="mini-btn">Preview / 预览</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel activity-panel">
+          <div class="panel-head">
+            <h2>Recent Activity / 最近动态</h2>
+            <span>Today</span>
           </div>
 
-          <div class="song-row">
-            <div>
-              <strong>Afterlove Demo</strong>
-              <p>BrokenLoop · Draft</p>
+          <div class="activity-list">
+            <div class="activity-item">
+              <strong>Uploaded preview for “慢慢的索嗨”</strong>
+              <p>刚上传试听版 · 5 mins ago</p>
             </div>
-            <div class="row-actions">
-              <button class="mini-btn">Edit / 编辑</button>
-              <button class="mini-btn">Preview / 预览</button>
+            <div class="activity-item">
+              <strong>Changed price for “Midnight Loop”</strong>
+              <p>调整价格 · 18 mins ago</p>
+            </div>
+            <div class="activity-item">
+              <strong>Created draft “Afterlove Demo”</strong>
+              <p>新增草稿 · 32 mins ago</p>
+            </div>
+            <div class="activity-item">
+              <strong>Viewed site homepage</strong>
+              <p>查看前台首页 · 1 hour ago</p>
             </div>
           </div>
-        </div>
+        </section>
       </section>
     </section>
   </main>
