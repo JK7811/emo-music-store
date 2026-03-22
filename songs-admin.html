@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrokenLoop Songs Admin</title>
+  <link rel="stylesheet" href="songs-admin.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="admin.html" class="back">← Back / 返回后台</a>
+      <div class="brand">BROKENLOOP / SONGS ADMIN</div>
+    </header>
+
+    <section class="admin-shortcuts">
+      <a href="admin.html" class="shortcut-btn">Dashboard / 仪表板</a>
+      <a href="songs-admin.html" class="shortcut-btn active">Songs / 歌曲管理</a>
+      <a href="orders.html" class="shortcut-btn">Orders / 订单</a>
+      <a href="members.html" class="shortcut-btn">Members / 会员</a>
+    </section>
+
+    <section class="hero">
+      <div class="badge">SONGS / 歌曲管理</div>
+      <h1>
+        Song Management
+        <span>这里以后会显示真实歌曲资料、状态与管理动作。</span>
+      </h1>
+      <p>
+        Manage titles, pricing, song status, featured placement, and preview readiness.
+      </p>
+      <p class="zh">
+        这里未来可以管理歌名、价格、歌曲状态、主打位置，以及试听准备状态。
+      </p>
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>Total Songs</span>
+        <strong>12</strong>
+      </div>
+      <div class="summary-card">
+        <span>Published</span>
+        <strong>8</strong>
+      </div>
+      <div class="summary-card">
+        <span>Drafts</span>
+        <strong>3</strong>
+      </div>
+      <div class="summary-card">
+        <span>Featured</span>
+        <strong>1</strong>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <input type="text" placeholder="Search song / 搜索歌曲" />
+      <select>
+        <option>All Status / 全部状态</option>
+        <option>Published / 已上架</option>
+        <option>Draft / 草稿</option>
+        <option>Hidden / 隐藏</option>
+      </select>
+      <select>
+        <option>All Placement / 全部位置</option>
+        <option>Featured / 主打</option>
+        <option>Regular / 普通</option>
+      </select>
+      <button class="add-btn">+ Add New Song / 新增歌曲</button>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Song List / 歌曲列表</h2>
+        <span>Latest Entries</span>
+      </div>
+
+      <div class="song-list">
+        <div class="song-row">
+          <div class="song-main">
+            <strong>慢慢的索嗨</strong>
+            <p>BrokenLoop · SGD 3.90 · 试听已上传</p>
+          </div>
+          <div class="song-tag featured">Featured / 主打</div>
+          <div class="song-status published">Published / 已上架</div>
+          <div class="row-actions">
+            <button class="mini-btn">Edit / 编辑</button>
+            <button class="mini-btn">Preview / 预览</button>
+          </div>
+        </div>
+
+        <div class="song-row">
+          <div class="song-main">
+            <strong>Midnight Loop</strong>
+            <p>BrokenLoop · SGD 4.90 · 试听已上传</p>
+          </div>
+          <div class="song-tag regular">Regular / 普通</div>
+          <div class="song-status published">Published / 已上架</div>
+          <div class="row-actions">
+            <button class="mini-btn">Edit / 编辑</button>
+            <button class="mini-btn">Preview / 预览</button>
+          </div>
+        </div>
+
+        <div class="song-row">
+          <div class="song-main">
+            <strong>Afterlove Demo</strong>
+            <p>BrokenLoop · Draft · 完整版未上传</p>
+          </div>
+          <div class="song-tag regular">Regular / 普通</div>
+          <div class="song-status draft">Draft / 草稿</div>
+          <div class="row-actions">
+            <button class="mini-btn">Edit / 编辑</button>
+            <button class="mini-btn">Preview / 预览</button>
+          </div>
+        </div>
+
+        <div class="song-row">
+          <div class="song-main">
+            <strong>Empty Seat</strong>
+            <p>BrokenLoop · Hidden · 试听未上传</p>
+          </div>
+          <div class="song-tag regular">Regular / 普通</div>
+          <div class="song-status hidden">Hidden / 隐藏</div>
+          <div class="row-actions">
+            <button class="mini-btn">Edit / 编辑</button>
+            <button class="mini-btn">Preview / 预览</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel notes-panel">
+      <div class="panel-head">
+        <h2>How Song Management Will Work / 歌曲管理未来逻辑</h2>
+        <span>Future Flow</span>
+      </div>
+
+      <div class="notes-list">
+        <div class="note-item">
+          <strong>Song Metadata / 歌曲资料</strong>
+          <p>Each song will have title, price, mood, cover, preview file, and full file data.</p>
+        </div>
+        <div class="note-item">
+          <strong>Status Control / 状态控制</strong>
+          <p>Admins will be able to mark songs as published, draft, or hidden.</p>
+        </div>
+        <div class="note-item">
+          <strong>Featured Placement / 主打歌曲</strong>
+          <p>One or more songs can be marked as featured and shown prominently on the homepage.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
