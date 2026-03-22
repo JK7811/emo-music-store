@@ -12,18 +12,18 @@
   <div class="bg-glow glow-2"></div>
   <div class="bg-glow glow-3"></div>
 
-  <header class="site-header">
-  <a href="index.html" class="site-logo">BROKENLOOP</a>
-
-  <nav class="site-nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="about.html">About</a>
-    <a href="login.html" class="active">Login</a>
-  </nav>
-  </header>
-  
   <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html" class="active">Login</a>
+      </nav>
+    </header>
+
     <header class="topbar">
       <a href="index.html" class="back">← Back / 返回首页</a>
       <div class="brand">BROKENLOOP / LOGIN</div>
@@ -34,50 +34,51 @@
         <div class="badge">MEMBER ACCESS / 会员入口</div>
         <h1>
           Enter BrokenLoop
-          <span>登录后进入你的音乐档案。</span>
+          <span>先用邮箱进入你的会员世界。</span>
         </h1>
 
         <p>
-          Members will be able to keep purchased songs in their library and listen anytime.
+          Members will be able to keep purchased songs in their library and return anytime.
         </p>
         <p class="zh">
-          会员未来可以把已购买歌曲保存到自己的歌单里，随时回来听。
+          会员未来可以把已购买歌曲保存在自己的歌单里，之后随时回来听。
         </p>
 
         <div class="feature-list">
           <div class="feature-item">
-            <strong>Google Login / Google 登录</strong>
-            <p>Future option for fast sign-in / 未来可一键登录</p>
-          </div>
-          <div class="feature-item">
-            <strong>Phone Login / 手机号登录</strong>
-            <p>OTP-based access later / 未来可验证码登录</p>
+            <strong>Email Login / 邮箱登录</strong>
+            <p>The first and simplest member login method. / 目前最简单、最稳定的会员登录方式。</p>
           </div>
           <div class="feature-item">
             <strong>My Library / 我的歌单</strong>
-            <p>Purchased songs saved to your account / 已购歌曲长期保留</p>
+            <p>Purchased songs will stay in your member account. / 已购买歌曲未来会保存在会员账号里。</p>
+          </div>
+          <div class="feature-item">
+            <strong>Future Upgrades / 后续升级</strong>
+            <p>Google and phone login can be added later. / 未来还可以再加入 Google 和手机登录。</p>
           </div>
         </div>
       </div>
 
       <div class="right-panel">
         <div class="form-card">
-          <div class="mini-badge">SIGN IN / 登录</div>
+          <div class="mini-badge">EMAIL LOGIN / 邮箱登录</div>
 
-          <button class="login-btn google">
-            Continue with Google / 使用 Google 继续
-          </button>
+          <label class="field">
+            <span>Email Address / 邮箱地址</span>
+            <input type="email" placeholder="you@example.com" />
+          </label>
 
-          <button class="login-btn phone">
-            Continue with Phone / 使用手机号继续
-          </button>
+          <a href="library.html" class="login-btn email">
+            Continue with Email / 使用邮箱继续
+          </a>
 
           <div class="divider">
             <span>or / 或</span>
           </div>
 
-          <a href="library.html" class="login-btn guest">
-            Preview Member Library / 预览会员歌单
+          <a href="library.html" class="login-btn member-preview">
+            Preview Member Area / 预览会员区域
           </a>
 
           <a href="songs.html" class="secondary-link">
@@ -86,27 +87,29 @@
 
           <div class="note-box">
             <p>
-              This is currently a visual prototype.
+              This is currently a visual prototype for member login.
             </p>
             <p>
-              目前这是登录界面雏形，未来会接上真实 Google / 手机号登录。
+              目前这是会员登录界面雏形，之后会接上真实 Supabase Email 登录。
             </p>
           </div>
         </div>
       </div>
     </section>
-  <footer class="site-footer">
-  <div class="footer-brand">
-    <div class="footer-logo">BROKENLOOP</div>
-    <p>Loops for the hearts that stayed too long.</p>
-  </div>
 
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="about.html">About</a>
-    <a href="login.html">Login</a>
-  </div>
-  </footer></main>
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
 </body>
 </html>
