@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrokenLoop Members</title>
+  <link rel="stylesheet" href="members.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="admin.html" class="back">← Back / 返回后台</a>
+      <div class="brand">BROKENLOOP / MEMBERS</div>
+    </header>
+
+    <section class="hero">
+      <div class="badge">MEMBERS / 会员管理</div>
+      <h1>
+        Member Dashboard
+        <span>这里以后会显示真实会员账号与歌单数据。</span>
+      </h1>
+      <p>
+        View member accounts, login methods, owned songs, and activity status.
+      </p>
+      <p class="zh">
+        这里未来可以查看会员账号、登录方式、已拥有歌曲数量，以及活跃状态。
+      </p>
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>Total Members</span>
+        <strong>18</strong>
+      </div>
+      <div class="summary-card">
+        <span>Google Login</span>
+        <strong>9</strong>
+      </div>
+      <div class="summary-card">
+        <span>Phone Login</span>
+        <strong>6</strong>
+      </div>
+      <div class="summary-card">
+        <span>Active Today</span>
+        <strong>5</strong>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <input type="text" placeholder="Search member / 搜索会员" />
+      <select>
+        <option>All Status / 全部状态</option>
+        <option>Active / 活跃</option>
+        <option>Inactive / 不活跃</option>
+      </select>
+      <select>
+        <option>All Login Type / 全部登录方式</option>
+        <option>Google</option>
+        <option>Phone</option>
+        <option>Apple</option>
+      </select>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Member List / 会员列表</h2>
+        <span>Latest Members</span>
+      </div>
+
+      <div class="member-list">
+        <div class="member-row">
+          <div class="member-main">
+            <strong>JK Member</strong>
+            <p>google@example.com · Joined 2 days ago</p>
+          </div>
+          <div class="login-type google">Google</div>
+          <div class="owned-count">2 Songs</div>
+          <div class="member-status active">Active / 活跃</div>
+        </div>
+
+        <div class="member-row">
+          <div class="member-main">
+            <strong>LateNightUser</strong>
+            <p>+65 **** 1234 · Joined 5 days ago</p>
+          </div>
+          <div class="login-type phone">Phone</div>
+          <div class="owned-count">1 Song</div>
+          <div class="member-status active">Active / 活跃</div>
+        </div>
+
+        <div class="member-row">
+          <div class="member-main">
+            <strong>Afterlove Listener</strong>
+            <p>apple-login-user · Joined 1 week ago</p>
+          </div>
+          <div class="login-type apple">Apple</div>
+          <div class="owned-count">3 Songs</div>
+          <div class="member-status inactive">Inactive / 不活跃</div>
+        </div>
+
+        <div class="member-row">
+          <div class="member-main">
+            <strong>Guest Converted</strong>
+            <p>phone-login-user · Joined 3 weeks ago</p>
+          </div>
+          <div class="login-type phone">Phone</div>
+          <div class="owned-count">1 Song</div>
+          <div class="member-status active">Active / 活跃</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel notes-panel">
+      <div class="panel-head">
+        <h2>How Members Will Work / 会员未来逻辑</h2>
+        <span>Future Flow</span>
+      </div>
+
+      <div class="notes-list">
+        <div class="note-item">
+          <strong>Account Creation / 创建账号</strong>
+          <p>Users will be able to log in with Google or phone and create a member profile.</p>
+        </div>
+        <div class="note-item">
+          <strong>Owned Songs / 已拥有歌曲</strong>
+          <p>Purchased songs will be attached to the member account and shown in My Library.</p>
+        </div>
+        <div class="note-item">
+          <strong>Long-term Access / 长期访问</strong>
+          <p>Members can return later and still listen to their owned tracks.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
