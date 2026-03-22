@@ -394,3 +394,37 @@ select {
     text-align: center;
   }
 }
+
+.admin-shortcuts {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.shortcut-btn {
+  text-decoration: none;
+  color: rgba(255,255,255,0.78);
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.03);
+  font-size: 14px;
+}
+
+.shortcut-btn.active {
+  color: #fff;
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.18);
+}
+
+@media (max-width: 640px) {
+  .admin-shortcuts {
+    width: 100%;
+  }
+
+  .shortcut-btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
