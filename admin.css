@@ -456,3 +456,74 @@ textarea {
     text-align: center;
   }
 }
+
+.gate-overlay {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.gate-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(18px);
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.gate-badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  margin-bottom: 18px;
+}
+
+.gate-card h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.gate-card p {
+  margin: 14px 0 0;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.8;
+}
+
+.gate-input {
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  font: inherit;
+}
+
+.gate-button {
+  width: 100%;
+  margin-top: 14px;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 18px;
+  font: inherit;
+  background: #fff;
+  color: #000;
+}
+
+.gate-error {
+  min-height: 24px;
+  margin-top: 12px;
+  color: #fca5a5;
+  font-size: 14px;
+}
