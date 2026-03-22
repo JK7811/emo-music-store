@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrokenLoop Activity Log</title>
+  <link rel="stylesheet" href="activity-log.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="admin.html" class="back">← Back / 返回后台</a>
+      <div class="brand">BROKENLOOP / ACTIVITY LOG</div>
+    </header>
+
+    <section class="admin-shortcuts">
+      <a href="admin.html" class="shortcut-btn">Dashboard / 仪表板</a>
+      <a href="songs-admin.html" class="shortcut-btn">Songs / 歌曲管理</a>
+      <a href="uploads.html" class="shortcut-btn">Uploads / 上传内容</a>
+      <a href="orders.html" class="shortcut-btn">Orders / 订单</a>
+      <a href="members.html" class="shortcut-btn">Members / 会员</a>
+      <a href="settings.html" class="shortcut-btn">Settings / 设置</a>
+      <a href="analytics.html" class="shortcut-btn">Analytics / 数据</a>
+      <a href="activity-log.html" class="shortcut-btn active">Activity / 动态</a>
+    </section>
+
+    <section class="hero">
+      <div class="badge">ACTIVITY LOG / 操作记录</div>
+      <h1>
+        Recent Activity
+        <span>这里以后会显示后台操作、订单变化和会员行为记录。</span>
+      </h1>
+      <p>
+        Track what changed across songs, uploads, orders, members, and settings.
+      </p>
+      <p class="zh">
+        这里未来可以追踪歌曲、上传、订单、会员和设置相关的变化记录。
+      </p>
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>Total Events</span>
+        <strong>12</strong>
+      </div>
+      <div class="summary-card">
+        <span>Uploads</span>
+        <strong>4</strong>
+      </div>
+      <div class="summary-card">
+        <span>Orders Updated</span>
+        <strong>3</strong>
+      </div>
+      <div class="summary-card">
+        <span>Settings Changed</span>
+        <strong>1</strong>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <input type="text" placeholder="Search activity / 搜索记录" />
+      <select>
+        <option>All Types / 全部类型</option>
+        <option>Song</option>
+        <option>Upload</option>
+        <option>Order</option>
+        <option>Member</option>
+        <option>Settings</option>
+      </select>
+      <select>
+        <option>Latest First / 最新优先</option>
+        <option>Oldest First / 最旧优先</option>
+      </select>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Timeline / 时间线</h2>
+        <span>Latest Events</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="dot upload"></div>
+          <div class="timeline-content">
+            <div class="event-top">
+              <strong>Uploaded preview for “慢慢的索嗨”</strong>
+              <span class="event-tag upload">Upload</span>
+            </div>
+            <p>30-second preview file uploaded and marked ready.</p>
+            <div class="event-meta">2026-03-22 · 10:48 AM</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot order"></div>
+          <div class="timeline-content">
+            <div class="event-top">
+              <strong>Order #BL-0001 marked as paid</strong>
+              <span class="event-tag order">Order</span>
+            </div>
+            <p>Member purchase completed and song added to library.</p>
+            <div class="event-meta">2026-03-22 · 10:35 AM</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot member"></div>
+          <div class="timeline-content">
+            <div class="event-top">
+              <strong>LateNightUser logged in via phone</strong>
+              <span class="event-tag member">Member</span>
+            </div>
+            <p>Existing member returned and viewed My Library.</p>
+            <div class="event-meta">2026-03-22 · 10:20 AM</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot song"></div>
+          <div class="timeline-content">
+            <div class="event-top">
+              <strong>“Midnight Loop” price updated to SGD 4.90</strong>
+              <span class="event-tag song">Song</span>
+            </div>
+            <p>Song pricing edited from the songs admin page.</p>
+            <div class="event-meta">2026-03-22 · 09:52 AM</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot settings"></div>
+          <div class="timeline-content">
+            <div class="event-top">
+              <strong>Guest purchase mode kept ON</strong>
+              <span class="event-tag settings">Settings</span>
+            </div>
+            <p>Store logic reviewed with guest purchases still enabled.</p>
+            <div class="event-meta">2026-03-22 · 09:30 AM</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot upload"></div>
+          <div class="timeline-content">
+            <div class="event-top">
+              <strong>Full song missing for “Afterlove Demo”</strong>
+              <span class="event-tag upload">Upload</span>
+            </div>
+            <p>Upload status checked; full version still not available.</p>
+            <div class="event-meta">2026-03-22 · 09:10 AM</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel notes-panel">
+      <div class="panel-head">
+        <h2>How This Page Will Help / 这页以后有什么用</h2>
+        <span>Purpose</span>
+      </div>
+
+      <div class="notes-list">
+        <div class="note-item">
+          <strong>Audit Trail / 操作轨迹</strong>
+          <p>See what changed, when it changed, and what part of the system was affected.</p>
+        </div>
+        <div class="note-item">
+          <strong>Operations Visibility / 运营可见性</strong>
+          <p>Useful for tracking uploads, payments, and member activity in one place.</p>
+        </div>
+        <div class="note-item">
+          <strong>Future Backend Use / 未来后台用途</strong>
+          <p>Later, this can become a real activity feed powered by database events.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
