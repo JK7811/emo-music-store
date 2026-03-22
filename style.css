@@ -259,3 +259,26 @@ h1 span {
     font-size: 13px;
   }
 }
+
+.member-note {
+  margin-top: 22px;
+  max-width: 760px;
+  text-align: center;
+}
+
+.member-note p {
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.62);
+}
+
+.member-note p.zh {
+  color: rgba(255,255,255,0.52);
+}
+
+@media (max-width: 640px) {
+  .member-note p {
+    font-size: 14px;
+  }
+}
