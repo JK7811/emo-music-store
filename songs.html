@@ -10,29 +10,79 @@
   <div class="noise"></div>
   <div class="bg-glow glow-1"></div>
   <div class="bg-glow glow-2"></div>
+  <div class="bg-glow glow-3"></div>
 
   <main class="page">
     <header class="topbar">
       <a href="index.html" class="back">← Back / 返回首页</a>
-      <div class="brand">BROKENLOOP / 歌曲档案</div>
+      <div class="brand">BROKENLOOP / SONGS</div>
     </header>
 
     <section class="hero">
-      <div class="badge">SONGS / 歌曲</div>
+      <div class="badge">SONG ARCHIVE / 歌曲档案</div>
       <h1>
         Preview the songs
-        <span>先试听，再决定要不要带走它。</span>
+        <span>先试听，再决定要不要把情绪带走。</span>
       </h1>
       <p>
-        Each track gives you 30 seconds to feel it.
+        Every song begins with 30 seconds.
         <br />
-        每一首歌都先给你 30 秒，看看它会不会刚好刺中你。
+        每一首歌，都先给你 30 秒去感受它值不值得留下。
       </p>
+    </section>
+
+    <section class="featured-card">
+      <div class="featured-cover"></div>
+
+      <div class="featured-content">
+        <div class="featured-top">
+          <div class="tag-row">
+            <span class="tag hot">HOT / 热门</span>
+            <span class="tag new">NEW / 新歌</span>
+          </div>
+          <div class="featured-price">SGD 3.90</div>
+        </div>
+
+        <h2>
+          慢慢的索嗨
+          <span>Man Man De Suo Hai</span>
+        </h2>
+
+        <p class="featured-desc">
+          一首关于失眠、备胎、反复心软的歌。
+        </p>
+
+        <p class="featured-desc en">
+          A song about sleepless nights, being the backup, and never fully letting go.
+        </p>
+
+        <audio controls preload="none" class="player">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+        </audio>
+
+        <div class="featured-actions">
+          <a href="song-detail.html" class="button primary">View Details / 查看详情</a>
+          <a href="buy.html" class="button ghost">Buy Song / 购买歌曲</a>
+        </div>
+
+        <div class="note">Preview is limited to 30 seconds / 试听限制 30 秒</div>
+      </div>
+    </section>
+
+    <section class="section-head">
+      <div>
+        <div class="mini-label">MORE TRACKS / 更多歌曲</div>
+        <h3>Song Library / 歌曲库</h3>
+      </div>
+      <div class="section-note">2 tracks available / 当前 2 首可试听</div>
     </section>
 
     <section class="grid">
       <article class="card">
-        <div class="cover cover-1"></div>
+        <div class="cover cover-1">
+          <div class="card-tag">FEATURED</div>
+        </div>
+
         <div class="content">
           <div class="meta">
             <div>
@@ -53,8 +103,8 @@
           </audio>
 
           <div class="actions">
-            <a href="buy.html" class="button primary">Buy Song / 购买歌曲</button>
             <a href="song-detail.html" class="button ghost">View Details / 查看详情</a>
+            <a href="buy.html" class="button primary">Buy Song / 购买歌曲</a>
           </div>
 
           <div class="note">Preview is limited to 30 seconds / 试听限制 30 秒</div>
@@ -62,7 +112,10 @@
       </article>
 
       <article class="card">
-        <div class="cover cover-2"></div>
+        <div class="cover cover-2">
+          <div class="card-tag alt">NEW</div>
+        </div>
+
         <div class="content">
           <div class="meta">
             <div>
@@ -83,8 +136,8 @@
           </audio>
 
           <div class="actions">
-            <a href="buy.html" class="button primary">Buy Song / 购买歌曲</button>
             <a href="song-detail.html" class="button ghost">View Details / 查看详情</a>
+            <a href="buy.html" class="button primary">Buy Song / 购买歌曲</a>
           </div>
 
           <div class="note">Preview is limited to 30 seconds / 试听限制 30 秒</div>
