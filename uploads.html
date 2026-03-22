@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrokenLoop Uploads</title>
+  <link rel="stylesheet" href="uploads.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="admin.html" class="back">← Back / 返回后台</a>
+      <div class="brand">BROKENLOOP / UPLOADS</div>
+    </header>
+
+    <section class="admin-shortcuts">
+      <a href="admin.html" class="shortcut-btn">Dashboard / 仪表板</a>
+      <a href="songs-admin.html" class="shortcut-btn">Songs / 歌曲管理</a>
+      <a href="uploads.html" class="shortcut-btn active">Uploads / 上传内容</a>
+      <a href="orders.html" class="shortcut-btn">Orders / 订单</a>
+      <a href="members.html" class="shortcut-btn">Members / 会员</a>
+      <a href="settings.html" class="shortcut-btn">Settings / 设置</a>
+    </section>
+
+    <section class="hero">
+      <div class="badge">UPLOADS / 上传管理</div>
+      <h1>
+        Upload Center
+        <span>这里以后会管理封面图、试听版和完整版音频。</span>
+      </h1>
+      <p>
+        Organize cover artwork, preview tracks, and full song files in one place.
+      </p>
+      <p class="zh">
+        这里未来可以集中管理封面、30 秒试听版，以及完整版歌曲文件。
+      </p>
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>Cover Files</span>
+        <strong>4</strong>
+      </div>
+      <div class="summary-card">
+        <span>Preview Files</span>
+        <strong>3</strong>
+      </div>
+      <div class="summary-card">
+        <span>Full Song Files</span>
+        <strong>2</strong>
+      </div>
+      <div class="summary-card">
+        <span>Missing Files</span>
+        <strong>2</strong>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Quick Upload / 快速上传</h2>
+        <span>Media Inputs</span>
+      </div>
+
+      <div class="upload-grid">
+        <div class="upload-card">
+          <h3>Cover Image / 封面图</h3>
+          <p>Upload or replace song cover artwork.</p>
+          <button class="upload-btn">Choose Cover / 选择封面</button>
+        </div>
+
+        <div class="upload-card">
+          <h3>Preview Audio / 试听音频</h3>
+          <p>Upload 30-second preview track.</p>
+          <button class="upload-btn">Upload Preview / 上传试听</button>
+        </div>
+
+        <div class="upload-card">
+          <h3>Full Song / 完整版音频</h3>
+          <p>Upload full version for members or downloads.</p>
+          <button class="upload-btn">Upload Full Song / 上传完整版</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Upload Status / 上传状态</h2>
+        <span>Current Media</span>
+      </div>
+
+      <div class="file-list">
+        <div class="file-row">
+          <div class="file-main">
+            <strong>慢慢的索嗨</strong>
+            <p>song-001 · Updated 2026-03-22</p>
+          </div>
+          <div class="file-tag ok">Cover ✓</div>
+          <div class="file-tag ok">Preview ✓</div>
+          <div class="file-tag ok">Full ✓</div>
+        </div>
+
+        <div class="file-row">
+          <div class="file-main">
+            <strong>Midnight Loop</strong>
+            <p>song-002 · Updated 2026-03-22</p>
+          </div>
+          <div class="file-tag ok">Cover ✓</div>
+          <div class="file-tag ok">Preview ✓</div>
+          <div class="file-tag ok">Full ✓</div>
+        </div>
+
+        <div class="file-row">
+          <div class="file-main">
+            <strong>Afterlove Demo</strong>
+            <p>song-003 · Updated 2026-03-22</p>
+          </div>
+          <div class="file-tag ok">Cover ✓</div>
+          <div class="file-tag ok">Preview ✓</div>
+          <div class="file-tag missing">Full ✕</div>
+        </div>
+
+        <div class="file-row">
+          <div class="file-main">
+            <strong>Empty Seat</strong>
+            <p>song-004 · Updated 2026-03-22</p>
+          </div>
+          <div class="file-tag missing">Cover ✕</div>
+          <div class="file-tag missing">Preview ✕</div>
+          <div class="file-tag missing">Full ✕</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel notes-panel">
+      <div class="panel-head">
+        <h2>How Uploads Will Work / 上传未来逻辑</h2>
+        <span>Future Flow</span>
+      </div>
+
+      <div class="notes-list">
+        <div class="note-item">
+          <strong>Cover Storage / 封面存储</strong>
+          <p>Each song will store a cover image file linked to its song ID.</p>
+        </div>
+        <div class="note-item">
+          <strong>Preview File / 试听文件</strong>
+          <p>Preview files will be limited to short snippets for public listening.</p>
+        </div>
+        <div class="note-item">
+          <strong>Full Song Access / 完整版访问</strong>
+          <p>Full songs will later be protected by member ownership or paid download logic.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
