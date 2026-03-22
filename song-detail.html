@@ -10,15 +10,21 @@
   <div class="noise"></div>
   <div class="bg-glow glow-1"></div>
   <div class="bg-glow glow-2"></div>
+  <div class="bg-glow glow-3"></div>
 
   <main class="page">
     <header class="topbar">
       <a href="songs.html" class="back">← Back / 返回歌曲页</a>
-      <div class="brand">BROKENLOOP / 单曲详情</div>
+      <div class="brand">BROKENLOOP / SINGLE</div>
     </header>
 
-    <section class="detail-card">
-      <div class="cover"></div>
+    <section class="hero-card">
+      <div class="cover">
+        <div class="cover-tag-row">
+          <span class="tag hot">HOT / 热门</span>
+          <span class="tag new">NEW / 新歌</span>
+        </div>
+      </div>
 
       <div class="content">
         <div class="badge">SINGLE / 单曲</div>
@@ -28,7 +34,16 @@
           <span>Man Man De Suo Hai</span>
         </h1>
 
-        <div class="artist">BrokenLoop</div>
+        <div class="artist-row">
+          <div class="artist">BrokenLoop</div>
+          <div class="price">SGD 3.90</div>
+        </div>
+
+        <div class="mood-row">
+          <span class="mood">Emo / 情绪</span>
+          <span class="mood">Heartbreak / 失落</span>
+          <span class="mood">Late Night / 深夜循环</span>
+        </div>
 
         <p class="desc">
           一首关于失眠、备胎、反复心软的歌。
@@ -38,29 +53,88 @@
           A song about sleepless nights, being the backup, and never fully letting go.
         </p>
 
-        <div class="price-row">
-          <div class="price">SGD 3.90</div>
-          <div class="preview-note">Preview limited to 30s / 试听限制 30 秒</div>
-        </div>
-
         <audio controls preload="none" class="player">
           <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
         </audio>
 
         <div class="actions">
-  <a href="buy.html" class="button primary">Buy Song / 购买歌曲</a>
-  <button class="button ghost">Unlock Full / 解锁完整版</button>
+          <a href="buy.html" class="button primary">Buy Song / 购买歌曲</a>
+          <a href="songs.html" class="button ghost">Back to Songs / 返回歌曲页</a>
+        </div>
+
+        <div class="note">Preview is limited to 30 seconds / 试听限制 30 秒</div>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Lyrics Preview / 歌词预览</h2>
+          <span>Preview</span>
         </div>
 
         <div class="lyrics-box">
-          <h2>Lyrics Preview / 歌词预览</h2>
           <p>
             我就是爱情的索嗨<br />
             明知道不该还在等待<br />
             你说他比我更帅<br />
-            所以我只能当你的备胎
+            所以我只能当你的备胎<br /><br />
+
+            我就是爱情的失败<br />
+            连离开都显得太慢太怪<br />
+            你一句“你很好”<br />
+            把我困在原地出不来
           </p>
         </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Track Info / 歌曲信息</h2>
+          <span>Metadata</span>
+        </div>
+
+        <div class="info-list">
+          <div class="info-row">
+            <span>Artist / 歌手</span>
+            <strong>BrokenLoop</strong>
+          </div>
+          <div class="info-row">
+            <span>Price / 价格</span>
+            <strong>SGD 3.90</strong>
+          </div>
+          <div class="info-row">
+            <span>Preview / 试听</span>
+            <strong>30 seconds</strong>
+          </div>
+          <div class="info-row">
+            <span>Mood / 氛围</span>
+            <strong>Emo, Heartbreak</strong>
+          </div>
+          <div class="info-row">
+            <span>Status / 状态</span>
+            <strong>Available</strong>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel story-panel">
+      <div class="panel-head">
+        <h2>Story Behind the Song / 歌曲背后的情绪</h2>
+        <span>Notes</span>
+      </div>
+
+      <div class="story-copy">
+        <p>
+          这首歌写给那些明明知道不该继续等，却还是会回头的人。
+        </p>
+        <p>
+          It’s for the ones who already know they should leave, but still stay a little longer every time.
+        </p>
+        <p>
+          它不一定是最大声的歌，但它会像深夜里的一个循环，慢慢把人困住。
+        </p>
       </div>
     </section>
   </main>
