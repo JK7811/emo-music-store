@@ -32,20 +32,79 @@
       </p>
     </section>
 
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>Owned Songs</span>
+        <strong>2</strong>
+      </div>
+      <div class="summary-card">
+        <span>Recently Played</span>
+        <strong>1</strong>
+      </div>
+      <div class="summary-card">
+        <span>Locked Songs</span>
+        <strong>1</strong>
+      </div>
+    </section>
+
+    <section class="panel featured-panel">
+      <div class="panel-head">
+        <h2>Recently Played / 最近播放</h2>
+        <span>Last played</span>
+      </div>
+
+      <div class="featured-track">
+        <div class="featured-cover"></div>
+
+        <div class="featured-content">
+          <div class="tag-row">
+            <span class="tag owned">OWNED / 已拥有</span>
+            <span class="tag recent">RECENT / 最近播放</span>
+          </div>
+
+          <h3>
+            慢慢的索嗨
+            <span>Man Man De Suo Hai</span>
+          </h3>
+
+          <p>
+            这是会员歌单里的最近播放歌曲示意。以后会显示真实已购与播放记录。
+          </p>
+
+          <audio controls preload="none" class="player">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+          </audio>
+
+          <div class="featured-actions">
+            <a href="song-detail.html" class="button ghost">View Details / 查看详情</a>
+            <a href="songs.html" class="button primary">Browse More / 浏览更多</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-head">
+      <div>
+        <div class="mini-label">OWNED TRACKS / 已拥有歌曲</div>
+        <h2>My Collection / 我的收藏</h2>
+      </div>
+      <div class="section-note">Songs saved to your account / 保存在账号中的歌曲</div>
+    </section>
+
     <section class="library-grid">
       <article class="song-card">
         <div class="cover cover-1"></div>
         <div class="content">
           <div class="meta">
             <div>
-              <h2>慢慢的索嗨</h2>
+              <h3>慢慢的索嗨</h3>
               <div class="artist">BrokenLoop</div>
             </div>
             <div class="owned">Owned / 已拥有</div>
           </div>
 
           <p class="desc">
-            会员已购歌曲示意。未来这里会显示你的真实购买记录。
+            会员已购歌曲示意。未来这里会显示你的真实购买记录与完整播放权限。
           </p>
 
           <audio controls preload="none" class="player">
@@ -59,14 +118,45 @@
         <div class="content">
           <div class="meta">
             <div>
-              <h2>Midnight Loop</h2>
+              <h3>Midnight Loop</h3>
+              <div class="artist">BrokenLoop</div>
+            </div>
+            <div class="owned">Owned / 已拥有</div>
+          </div>
+
+          <p class="desc">
+            已购歌曲以后会出现在这里，成为你的个人歌单内容。
+          </p>
+
+          <audio controls preload="none" class="player">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </article>
+    </section>
+
+    <section class="section-head second-head">
+      <div>
+        <div class="mini-label">LOCKED TRACKS / 未解锁歌曲</div>
+        <h2>Not Yet Owned / 尚未拥有</h2>
+      </div>
+      <div class="section-note">Preview available, full access locked / 可试听，完整版未解锁</div>
+    </section>
+
+    <section class="library-grid">
+      <article class="song-card">
+        <div class="cover cover-3"></div>
+        <div class="content">
+          <div class="meta">
+            <div>
+              <h3>Afterlove Demo</h3>
               <div class="artist">BrokenLoop</div>
             </div>
             <div class="locked">Locked / 未拥有</div>
           </div>
 
           <p class="desc">
-            未购买歌曲示意。未来登录后只会显示你的已购歌曲，或标示未解锁状态。
+            未购买歌曲示意。未来未解锁歌曲可显示为 locked 状态，或不出现在歌单中。
           </p>
 
           <div class="actions">
