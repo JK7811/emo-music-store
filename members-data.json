@@ -1,0 +1,50 @@
+[
+  {
+    "id": "member-001",
+    "display_name": "JK Member",
+    "login_type": "google",
+    "email": "google@example.com",
+    "phone": "",
+    "status": "active",
+    "owned_song_ids": ["song-001", "song-002"],
+    "owned_song_count": 2,
+    "last_login_at": "2026-03-22 10:30",
+    "joined_at": "2026-03-20"
+  },
+  {
+    "id": "member-002",
+    "display_name": "LateNightUser",
+    "login_type": "phone",
+    "email": "",
+    "phone": "+65 **** 1234",
+    "status": "active",
+    "owned_song_ids": ["song-001"],
+    "owned_song_count": 1,
+    "last_login_at": "2026-03-22 09:10",
+    "joined_at": "2026-03-17"
+  },
+  {
+    "id": "member-003",
+    "display_name": "Afterlove Listener",
+    "login_type": "apple",
+    "email": "",
+    "phone": "",
+    "status": "inactive",
+    "owned_song_ids": ["song-001", "song-002", "song-003"],
+    "owned_song_count": 3,
+    "last_login_at": "2026-03-18 23:45",
+    "joined_at": "2026-03-15"
+  },
+  {
+    "id": "member-004",
+    "display_name": "Guest Converted",
+    "login_type": "phone",
+    "email": "",
+    "phone": "+65 **** 8888",
+    "status": "active",
+    "owned_song_ids": ["song-002"],
+    "owned_song_count": 1,
+    "last_login_at": "2026-03-21 20:05",
+    "joined_at": "2026-03-01"
+  }
+]
