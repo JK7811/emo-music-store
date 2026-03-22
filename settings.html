@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrokenLoop Settings</title>
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="admin.html" class="back">← Back / 返回后台</a>
+      <div class="brand">BROKENLOOP / SETTINGS</div>
+    </header>
+
+    <section class="admin-shortcuts">
+      <a href="admin.html" class="shortcut-btn">Dashboard / 仪表板</a>
+      <a href="songs-admin.html" class="shortcut-btn">Songs / 歌曲管理</a>
+      <a href="orders.html" class="shortcut-btn">Orders / 订单</a>
+      <a href="members.html" class="shortcut-btn">Members / 会员</a>
+      <a href="settings.html" class="shortcut-btn active">Settings / 设置</a>
+    </section>
+
+    <section class="hero">
+      <div class="badge">SETTINGS / 设置</div>
+      <h1>
+        Site Settings
+        <span>这里以后会控制网站品牌、会员模式和商店逻辑。</span>
+      </h1>
+      <p>
+        Manage brand text, store rules, member access, and future purchase behavior.
+      </p>
+      <p class="zh">
+        这里未来可以管理品牌文字、商店规则、会员模式，以及购买逻辑。
+      </p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Brand Settings / 品牌设置</h2>
+        <span>Identity</span>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          <span>Site Name / 网站名称</span>
+          <input type="text" value="BrokenLoop" />
+        </label>
+
+        <label>
+          <span>Default Currency / 默认货币</span>
+          <select>
+            <option selected>SGD</option>
+            <option>MYR</option>
+            <option>USD</option>
+          </select>
+        </label>
+
+        <label class="full">
+          <span>Brand Tagline / 品牌标语</span>
+          <input type="text" value="Loops for the hearts that stayed too long." />
+        </label>
+
+        <label class="full">
+          <span>Brand Description / 品牌简介</span>
+          <textarea>BrokenLoop is a dark little place for unfinished feelings, midnight songs, and the people who still replay everything.</textarea>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Store Rules / 商店规则</h2>
+        <span>Commerce</span>
+      </div>
+
+      <div class="toggle-list">
+        <div class="toggle-row">
+          <div>
+            <strong>Member Mode / 会员模式</strong>
+            <p>Allow members to keep purchased songs in their library.</p>
+          </div>
+          <div class="toggle on">ON</div>
+        </div>
+
+        <div class="toggle-row">
+          <div>
+            <strong>Guest Purchase / 游客购买</strong>
+            <p>Allow guests to buy songs without logging in.</p>
+          </div>
+          <div class="toggle on">ON</div>
+        </div>
+
+        <div class="toggle-row">
+          <div>
+            <strong>Auto Unlock / 自动解锁</strong>
+            <p>Automatically unlock full songs after successful payment.</p>
+          </div>
+          <div class="toggle off">OFF</div>
+        </div>
+
+        <div class="toggle-row">
+          <div>
+            <strong>Downloads Enabled / 开放下载</strong>
+            <p>Allow buyers to download purchased songs directly.</p>
+          </div>
+          <div class="toggle on">ON</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-grid">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Homepage Control / 首页控制</h2>
+          <span>Layout</span>
+        </div>
+
+        <div class="form-grid single">
+          <label>
+            <span>Featured Song ID / 主打歌曲 ID</span>
+            <input type="text" value="song-001" />
+          </label>
+
+          <label>
+            <span>Hero Button Primary / 首页主按钮</span>
+            <select>
+              <option selected>Login</option>
+              <option>Songs</option>
+              <option>About</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Hero Button Secondary / 首页次按钮</span>
+            <select>
+              <option selected>Songs</option>
+              <option>Login</option>
+              <option>About</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Member Logic / 会员逻辑</h2>
+          <span>Access</span>
+        </div>
+
+        <div class="notes-list">
+          <div class="note-item">
+            <strong>Logged-in users / 已登录用户</strong>
+            <p>Future members can keep songs permanently in My Library.</p>
+          </div>
+          <div class="note-item">
+            <strong>Guest users / 游客</strong>
+            <p>Guests can preview and buy directly, but no permanent library.</p>
+          </div>
+          <div class="note-item">
+            <strong>Upgrade path / 升级路线</strong>
+            <p>Prototype now, real auth + payments + storage later on MacBook.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="actions-panel">
+      <button class="btn ghost">Reset / 重置</button>
+      <button class="btn primary">Save Settings / 保存设置</button>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
