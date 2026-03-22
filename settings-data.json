@@ -1,0 +1,21 @@
+{
+  "site_name": "BrokenLoop",
+  "site_name_zh": "破碎循环",
+  "currency": "SGD",
+  "tagline": "Loops for the hearts that stayed too long.",
+  "tagline_zh": "献给那些停留太久、走不出来的人。",
+  "brand_description": "BrokenLoop is a dark little place for unfinished feelings, midnight songs, and the people who still replay everything.",
+  "brand_description_zh": "BrokenLoop 是一个收留未完情绪、深夜歌曲，还有那些不断重复回忆的人的地方。",
+  "member_mode": true,
+  "guest_purchase": true,
+  "auto_unlock": false,
+  "downloads_enabled": true,
+  "featured_song_id": "song-001",
+  "hero_primary_button": "login",
+  "hero_secondary_button": "songs",
+  "default_login_mode": "google_or_phone",
+  "library_enabled": true,
+  "guest_preview_seconds": 30,
+  "site_status": "beta",
+  "updated_at": "2026-03-22"
+}
