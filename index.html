@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BrokenLoop</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Login - BrokenLoop</title>
+  <link rel="stylesheet" href="login.css" />
 </head>
 <body>
   <div class="noise"></div>
@@ -14,163 +14,102 @@
 
   <main class="page">
     <header class="site-header">
-  <a href="index.html" class="site-logo">BROKENLOOP</a>
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
 
-  <nav class="site-nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="about.html">About</a>
-    <a href="login.html">Login</a>
-  </nav>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html" class="active">Login</a>
+      </nav>
     </header>
-    <section class="hero">
-      <div class="badge">BROKENLOOP / 破碎循环</div>
 
-      <h1>
-        Loops for the hearts
-        <br />
-        that stayed too long.
-        <span>献给那些停留太久、走不出来的人。</span>
-      </h1>
+    <header class="topbar">
+      <a href="index.html" class="back">← Back / 返回首页</a>
+      <div class="brand">BROKENLOOP / LOGIN</div>
+    </header>
 
-      <p class="desc">
-        A dark little place for unfinished feelings, midnight songs,
-        and the people who still replay everything.
-      </p>
-
-      <p class="desc zh">
-        一个收留未完情绪、深夜歌曲，
-        还有那些不断重复回忆的人的地方。
-      </p>
-
-      <div class="member-note">
-        <p>Members will be able to keep purchased songs in their library and listen anytime.</p>
-        <p class="zh">会员未来可把已购买歌曲保存到个人歌单里，随时回来听。</p>
-      </div>
-
-      <div class="actions">
-        <a href="login.html" class="button primary">Enter / 进入</a>
-        <a href="songs.html" class="button ghost">Preview Songs / 试听歌曲</a>
-        <a href="about.html" class="button ghost">About / 关于</a>
-      </div>
-    </section>
-
-    <section class="section-head">
-      <div>
-        <div class="mini-label">FEATURED / 主打歌曲</div>
-        <h2>Main Track / 主打单曲</h2>
-      </div>
-      <div class="section-note">One featured song from the archive / 当前主打歌曲</div>
-    </section>
-
-    <section class="featured-card">
-      <div class="featured-cover"></div>
-
-      <div class="featured-content">
-        <div class="tag-row">
-          <span class="tag hot">HOT / 热门</span>
-          <span class="tag new">NEW / 新歌</span>
-        </div>
-
-        <h3>
-          慢慢的索嗨
-          <span>Man Man De Suo Hai</span>
-        </h3>
+    <section class="login-card">
+      <div class="left-panel">
+        <div class="badge">MEMBER ACCESS / 会员入口</div>
+        <h1>
+          Enter BrokenLoop
+          <span>先用邮箱进入你的会员世界。</span>
+        </h1>
 
         <p>
-          一首关于失眠、备胎、反复心软的歌。
+          Members will be able to keep purchased songs in their library and return anytime.
+        </p>
+        <p class="zh">
+          会员未来可以把已购买歌曲保存在自己的歌单里，之后随时回来听。
         </p>
 
-        <p class="small-copy">
-          A song about sleepless nights, being the backup, and never fully letting go.
-        </p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Email Login / 邮箱登录</strong>
+            <p>The first and simplest member login method. / 目前最简单、最稳定的会员登录方式。</p>
+          </div>
+          <div class="feature-item">
+            <strong>My Library / 我的歌单</strong>
+            <p>Purchased songs will stay in your member account. / 已购买歌曲未来会保存在会员账号里。</p>
+          </div>
+          <div class="feature-item">
+            <strong>Future Upgrades / 后续升级</strong>
+            <p>Google and phone login can be added later. / 未来还可以再加入 Google 和手机登录。</p>
+          </div>
+        </div>
+      </div>
 
-        <div class="featured-actions">
-          <a href="song-detail.html" class="button primary">View Details / 查看详情</a>
-          <a href="songs.html" class="button ghost">Browse Songs / 浏览歌曲</a>
+      <div class="right-panel">
+        <div class="form-card">
+          <div class="mini-badge">EMAIL LOGIN / 邮箱登录</div>
+
+          <label class="field">
+            <span>Email Address / 邮箱地址</span>
+            <input type="email" placeholder="you@example.com" />
+          </label>
+
+          <a href="library.html" class="login-btn email">
+            Continue with Email / 使用邮箱继续
+          </a>
+
+          <div class="divider">
+            <span>or / 或</span>
+          </div>
+
+          <a href="library.html" class="login-btn member-preview">
+            Preview Member Area / 预览会员区域
+          </a>
+
+          <a href="songs.html" class="secondary-link">
+            Continue as Guest / 以游客身份试听
+          </a>
+
+          <div class="note-box">
+            <p>
+              This is currently a visual prototype for member login.
+            </p>
+            <p>
+              目前这是会员登录界面雏形，之后会接上真实 Supabase Email 登录。
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section-head second-head">
-      <div>
-        <div class="mini-label">ABOUT / 关于品牌</div>
-        <h2>What BrokenLoop Is / BrokenLoop 是什么</h2>
-      </div>
-      <div class="section-note">More than a music page / 不只是一个卖歌页面</div>
-    </section>
-
-    <section class="info-grid">
-      <div class="info-card">
-        <h3>Emotion First</h3>
-        <p>BrokenLoop starts from mood, memory, and unfinished feelings.</p>
-        <p class="zh">BrokenLoop 从情绪、记忆，还有那些没结束的感觉开始。</p>
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
       </div>
 
-      <div class="info-card">
-        <h3>Slow Experience</h3>
-        <p>This site is made to be felt slowly, not rushed through.</p>
-        <p class="zh">这个网站不是让人急着点完，而是让人慢慢沉进去。</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
       </div>
-
-      <div class="info-card">
-        <h3>Music as Memory</h3>
-        <p>Each song is treated like a fragment of a late-night memory.</p>
-        <p class="zh">每一首歌都像一段深夜回忆的碎片被保存下来。</p>
-      </div>
-    </section>
-
-    <section class="section-head second-head">
-      <div>
-        <div class="mini-label">MEMBERS / 会员权益</div>
-        <h2>What Members Get / 会员以后能得到什么</h2>
-      </div>
-      <div class="section-note">Planned member features / 未来会员功能方向</div>
-    </section>
-
-    <section class="benefits-grid">
-      <div class="benefit-card">
-        <h3>My Library / 我的歌单</h3>
-        <p>Purchased songs stay in your member account and can be played again later.</p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>Google / Phone Login</h3>
-        <p>Future login options will include Google and phone-based access.</p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>Permanent Access</h3>
-        <p>Members will be able to return and listen to owned songs anytime.</p>
-      </div>
-    </section>
-
-    <section class="cta-panel">
-      <div class="panel-copy">
-        <div class="mini-label">ENTER THE ARCHIVE / 进入档案</div>
-        <h2>Start with the songs, or step into the member side.</h2>
-        <p>
-          你可以先试听歌曲，也可以从会员入口先看看未来的个人歌单体验。
-        </p>
-      </div>
-
-      <div class="cta-actions">
-        <a href="songs.html" class="button ghost">Preview Songs / 试听歌曲</a>
-        <a href="login.html" class="button primary">Member Login / 会员进入</a>
-      </div>
-    </section>
-  <footer class="site-footer">
-  <div class="footer-brand">
-    <div class="footer-logo">BROKENLOOP</div>
-    <p>Loops for the hearts that stayed too long.</p>
-  </div>
-
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="about.html">About</a>
-    <a href="login.html">Login</a>
-  </div>
-  </footer></main>
+    </footer>
+  </main>
 </body>
 </html>
