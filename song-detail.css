@@ -435,3 +435,47 @@ h1 span {
     text-align: center;
   }
 }
+
+.site-footer {
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.footer-brand p {
+  margin: 10px 0 0;
+  color: rgba(255,255,255,0.56);
+  line-height: 1.8;
+  font-size: 14px;
+  max-width: 360px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    flex-direction: column;
+  }
+}
