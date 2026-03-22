@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrokenLoop Orders</title>
+  <link rel="stylesheet" href="orders.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="admin.html" class="back">← Back / 返回后台</a>
+      <div class="brand">BROKENLOOP / ORDERS</div>
+    </header>
+
+    <section class="hero">
+      <div class="badge">ORDERS / 订单管理</div>
+      <h1>
+        Order Dashboard
+        <span>这里以后会显示真实的歌曲订单记录。</span>
+      </h1>
+      <p>
+        Track purchases, member access, guest downloads, and delivery status.
+      </p>
+      <p class="zh">
+        这里未来可以追踪歌曲购买、会员入库、游客下载，以及交付状态。
+      </p>
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>Total Orders</span>
+        <strong>23</strong>
+      </div>
+      <div class="summary-card">
+        <span>Paid</span>
+        <strong>18</strong>
+      </div>
+      <div class="summary-card">
+        <span>Pending</span>
+        <strong>5</strong>
+      </div>
+      <div class="summary-card">
+        <span>Member Orders</span>
+        <strong>9</strong>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <input type="text" placeholder="Search order / 搜索订单" />
+      <select>
+        <option>All Status / 全部状态</option>
+        <option>Paid / 已付款</option>
+        <option>Pending / 待付款</option>
+        <option>Cancelled / 已取消</option>
+      </select>
+      <select>
+        <option>All Type / 全部类型</option>
+        <option>Member / 会员</option>
+        <option>Guest / 游客</option>
+      </select>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Recent Orders / 最近订单</h2>
+        <span>Latest Activity</span>
+      </div>
+
+      <div class="order-list">
+        <div class="order-row">
+          <div class="order-main">
+            <strong>#BL-0001</strong>
+            <p>慢慢的索嗨 · Ordered by JK Member</p>
+          </div>
+          <div class="order-type member">Member / 会员</div>
+          <div class="order-status paid">Paid / 已付款</div>
+          <div class="order-delivery">Library / 入库</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-main">
+            <strong>#BL-0002</strong>
+            <p>Midnight Loop · Ordered by Guest User</p>
+          </div>
+          <div class="order-type guest">Guest / 游客</div>
+          <div class="order-status pending">Pending / 待付款</div>
+          <div class="order-delivery">Download / 下载</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-main">
+            <strong>#BL-0003</strong>
+            <p>慢慢的索嗨 · Ordered by Apple Login User</p>
+          </div>
+          <div class="order-type member">Member / 会员</div>
+          <div class="order-status paid">Paid / 已付款</div>
+          <div class="order-delivery">Library / 入库</div>
+        </div>
+
+        <div class="order-row">
+          <div class="order-main">
+            <strong>#BL-0004</strong>
+            <p>Afterlove Demo · Ordered by Guest Buyer</p>
+          </div>
+          <div class="order-type guest">Guest / 游客</div>
+          <div class="order-status cancelled">Cancelled / 已取消</div>
+          <div class="order-delivery">Download / 下载</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel notes-panel">
+      <div class="panel-head">
+        <h2>How Orders Will Work / 订单未来逻辑</h2>
+        <span>Future Flow</span>
+      </div>
+
+      <div class="notes-list">
+        <div class="note-item">
+          <strong>Member Orders / 会员订单</strong>
+          <p>Paid songs will automatically be added into the member’s library.</p>
+        </div>
+        <div class="note-item">
+          <strong>Guest Orders / 游客订单</strong>
+          <p>Guests can buy a song directly and receive download-only access.</p>
+        </div>
+        <div class="note-item">
+          <strong>Auto Unlock / 自动解锁</strong>
+          <p>In the future, payment completion will trigger instant unlock.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
