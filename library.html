@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Library - BrokenLoop</title>
+  <link rel="stylesheet" href="library.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+  <div class="bg-glow glow-3"></div>
+
+  <main class="page">
+    <header class="topbar">
+      <a href="login.html" class="back">← Back / 返回登录页</a>
+      <div class="brand">BROKENLOOP / MY LIBRARY</div>
+    </header>
+
+    <section class="hero">
+      <div class="badge">MEMBER LIBRARY / 会员歌单</div>
+      <h1>
+        My Songs
+        <span>这里会是会员已购歌曲的长期收藏区。</span>
+      </h1>
+      <p>
+        Purchased songs will stay in your account and can be played anytime after login.
+      </p>
+      <p class="zh">
+        未来登录后，买过的歌曲会长期保存在你的账号里，随时都能回来听。
+      </p>
+    </section>
+
+    <section class="library-grid">
+      <article class="song-card">
+        <div class="cover cover-1"></div>
+        <div class="content">
+          <div class="meta">
+            <div>
+              <h2>慢慢的索嗨</h2>
+              <div class="artist">BrokenLoop</div>
+            </div>
+            <div class="owned">Owned / 已拥有</div>
+          </div>
+
+          <p class="desc">
+            会员已购歌曲示意。未来这里会显示你的真实购买记录。
+          </p>
+
+          <audio controls preload="none" class="player">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </article>
+
+      <article class="song-card">
+        <div class="cover cover-2"></div>
+        <div class="content">
+          <div class="meta">
+            <div>
+              <h2>Midnight Loop</h2>
+              <div class="artist">BrokenLoop</div>
+            </div>
+            <div class="locked">Locked / 未拥有</div>
+          </div>
+
+          <p class="desc">
+            未购买歌曲示意。未来登录后只会显示你的已购歌曲，或标示未解锁状态。
+          </p>
+
+          <div class="actions">
+            <a href="buy.html" class="button primary">Buy Song / 购买歌曲</a>
+            <a href="songs.html" class="button ghost">Browse Songs / 浏览歌曲</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>How It Will Work / 以后会怎么运作</h2>
+        <span>Future Logic</span>
+      </div>
+
+      <div class="logic-list">
+        <div class="logic-item">
+          <strong>Members / 会员</strong>
+          <p>Login with Google or phone, buy once, and keep songs in your library.</p>
+        </div>
+        <div class="logic-item">
+          <strong>Guests / 游客</strong>
+          <p>Preview and buy directly, but no permanent member library.</p>
+        </div>
+        <div class="logic-item">
+          <strong>Upgrades / 升级后</strong>
+          <p>Real login, real purchases, and automatic unlock will replace this prototype.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
