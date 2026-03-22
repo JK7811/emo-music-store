@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrokenLoop Analytics</title>
+  <link rel="stylesheet" href="analytics.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="admin.html" class="back">← Back / 返回后台</a>
+      <div class="brand">BROKENLOOP / ANALYTICS</div>
+    </header>
+
+    <section class="admin-shortcuts">
+      <a href="admin.html" class="shortcut-btn">Dashboard / 仪表板</a>
+      <a href="songs-admin.html" class="shortcut-btn">Songs / 歌曲管理</a>
+      <a href="uploads.html" class="shortcut-btn">Uploads / 上传内容</a>
+      <a href="orders.html" class="shortcut-btn">Orders / 订单</a>
+      <a href="members.html" class="shortcut-btn">Members / 会员</a>
+      <a href="settings.html" class="shortcut-btn">Settings / 设置</a>
+      <a href="analytics.html" class="shortcut-btn active">Analytics / 数据</a>
+    </section>
+
+    <section class="hero">
+      <div class="badge">ANALYTICS / 数据分析</div>
+      <h1>
+        Performance Overview
+        <span>这里以后会显示真实试听、购买和会员行为数据。</span>
+      </h1>
+      <p>
+        Track previews, song popularity, paid orders, member behavior, and conversion trends.
+      </p>
+      <p class="zh">
+        这里未来可以追踪试听量、歌曲热度、付费订单、会员行为，以及转化趋势。
+      </p>
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>Total Previews</span>
+        <strong>128</strong>
+      </div>
+      <div class="summary-card">
+        <span>Paid Orders</span>
+        <strong>18</strong>
+      </div>
+      <div class="summary-card">
+        <span>Active Members</span>
+        <strong>5</strong>
+      </div>
+      <div class="summary-card">
+        <span>Conversion Rate</span>
+        <strong>14%</strong>
+      </div>
+    </section>
+
+    <section class="analytics-grid">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Top Songs / 热门歌曲</h2>
+          <span>Most Played</span>
+        </div>
+
+        <div class="rank-list">
+          <div class="rank-row">
+            <div>
+              <strong>#1 慢慢的索嗨</strong>
+              <p>Top previewed and highest interest</p>
+            </div>
+            <div class="stat-pill">64 Plays</div>
+          </div>
+
+          <div class="rank-row">
+            <div>
+              <strong>#2 Midnight Loop</strong>
+              <p>Strong replay behavior from members</p>
+            </div>
+            <div class="stat-pill">41 Plays</div>
+          </div>
+
+          <div class="rank-row">
+            <div>
+              <strong>#3 Afterlove Demo</strong>
+              <p>Good curiosity, low conversion</p>
+            </div>
+            <div class="stat-pill">23 Plays</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Audience Split / 用户分布</h2>
+          <span>Members vs Guests</span>
+        </div>
+
+        <div class="split-list">
+          <div class="split-row">
+            <span>Member Orders / 会员订单</span>
+            <strong>9</strong>
+          </div>
+          <div class="split-row">
+            <span>Guest Orders / 游客订单</span>
+            <strong>9</strong>
+          </div>
+          <div class="split-row">
+            <span>Google Logins / Google 登录</span>
+            <strong>1</strong>
+          </div>
+          <div class="split-row">
+            <span>Phone Logins / 手机登录</span>
+            <strong>2</strong>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Preview Funnel / 试听转化漏斗</h2>
+        <span>User Journey</span>
+      </div>
+
+      <div class="funnel-list">
+        <div class="funnel-row">
+          <div class="funnel-label">Preview Started / 开始试听</div>
+          <div class="funnel-bar">
+            <div class="fill fill-100"></div>
+          </div>
+          <div class="funnel-value">128</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Detail Viewed / 查看详情</div>
+          <div class="funnel-bar">
+            <div class="fill fill-70"></div>
+          </div>
+          <div class="funnel-value">89</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Buy Clicked / 点击购买</div>
+          <div class="funnel-bar">
+            <div class="fill fill-38"></div>
+          </div>
+          <div class="funnel-value">49</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Paid / 已付款</div>
+          <div class="funnel-bar">
+            <div class="fill fill-14"></div>
+          </div>
+          <div class="funnel-value">18</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel notes-panel">
+      <div class="panel-head">
+        <h2>What This Page Will Become / 这页以后会变成什么</h2>
+        <span>Future Logic</span>
+      </div>
+
+      <div class="notes-list">
+        <div class="note-item">
+          <strong>Song Performance / 歌曲表现</strong>
+          <p>Show real preview counts, replay counts, and conversion by song.</p>
+        </div>
+        <div class="note-item">
+          <strong>Member Behavior / 会员行为</strong>
+          <p>Track who logs in, who buys, and what gets replayed most.</p>
+        </div>
+        <div class="note-item">
+          <strong>Business Decisions / 决策用途</strong>
+          <p>Help decide which songs to feature, price, promote, or keep member-only.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
