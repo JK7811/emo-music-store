@@ -62,39 +62,39 @@
 
       <div class="right-panel">
         <div class="form-card">
-          <div class="mini-badge">EMAIL LOGIN / 邮箱登录</div>
+  <div class="mini-badge">EMAIL LOGIN / 邮箱登录</div>
 
-          <label class="field">
-            <span>Email Address / 邮箱地址</span>
-            <input id="emailInput" type="email" placeholder="you@example.com" />
-          </label>
+  <label class="field">
+    <span>Email Address / 邮箱地址</span>
+    <input id="loginEmail" type="email" placeholder="you@example.com" />
+  </label>
 
-          <button id="emailLoginBtn" class="login-btn email" type="button">
-  Continue with Email / 使用邮箱继续
-</button>
+  <label class="field">
+    <span>Password / 密码</span>
+    <input id="loginPassword" type="password" placeholder="Your password" />
+  </label>
 
-          <div class="divider">
-            <span>or / 或</span>
-          </div>
+  <button id="loginBtn" class="login-btn email" type="button">
+    Sign In / 登录
+  </button>
 
-          <a href="library.html" class="login-btn member-preview">
-            Preview Member Area / 预览会员区域
-          </a>
+  <a href="signup.html" class="login-btn member-preview">
+    Create Account / 注册会员
+  </a>
 
-          <a href="songs.html" class="secondary-link">
-            Continue as Guest / 以游客身份试听
-          </a>
+  <a href="songs.html" class="secondary-link">
+    Continue as Guest / 以游客身份试听
+  </a>
 
-          <div class="note-box">
-            <p>
-              This is currently a visual prototype for member login.
-            </p>
-            <p>
-              目前这是会员登录界面雏形，之后会接上真实 Supabase Email 登录。
-            </p>
-          </div>
+  <div class="note-box">
+    <p>
+      Please sign in with your confirmed email and password.
+    </p>
+    <p>
+      请使用已验证的邮箱和密码登录。
+    </p>
+  </div>
         </div>
-      </div>
     </section>
 
     <footer class="site-footer">
@@ -115,12 +115,13 @@
   <script type="module">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-  const supabaseUrl = 'YOUR_SUPABASE_URL';
-  const supabaseKey = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
   const supabase = createClient(supabaseUrl, supabaseKey);
 
-  const emailInput = document.getElementById('emailInput');
-  const emailLoginBtn = document.getElementById('emailLoginBtn');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const loginBtn = document.getElementById('loginBtn');
 
   const {
     data: { session }
@@ -130,33 +131,31 @@
     window.location.href = 'library.html';
   }
 
-  emailLoginBtn.addEventListener('click', async () => {
-    const email = emailInput.value.trim();
+  loginBtn.addEventListener('click', async () => {
+    const email = loginEmail.value.trim();
+    const password = loginPassword.value;
 
-    if (!email) {
-      alert('Please enter your email / 请输入邮箱');
+    if (!email || !password) {
+      alert('Please enter email and password / 请输入邮箱和密码');
       return;
     }
 
-    emailLoginBtn.disabled = true;
-    emailLoginBtn.textContent = 'Sending... / 发送中...';
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Signing in... / 登录中...';
 
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      options: {
-        emailRedirectTo: 'https://emo-music-store.vercel.app/login.html'
-      }
+      password
     });
 
     if (error) {
       alert('Login failed / 登录失败：' + error.message);
-      emailLoginBtn.disabled = false;
-      emailLoginBtn.textContent = 'Continue with Email / 使用邮箱继续';
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Sign In / 登录';
       return;
     }
 
-    alert('Magic link sent / 登录邮件已发送，请到邮箱打开链接。');
-    emailLoginBtn.textContent = 'Check your email / 请检查邮箱';
+    window.location.href = 'library.html';
   });
   </script>
 </body>
