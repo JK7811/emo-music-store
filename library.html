@@ -12,22 +12,36 @@
   <div class="bg-glow glow-2"></div>
   <div class="bg-glow glow-3"></div>
 
-  <header class="site-header">
-  <a href="index.html" class="site-logo">BROKENLOOP</a>
-
-  <nav class="site-nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="about.html">About</a>
-    <a href="login.html">Login</a>
-  </nav>
-  </header>
-  
   <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html" class="active">Login</a>
+      </nav>
+    </header>
+
     <header class="topbar">
       <a href="login.html" class="back">← Back / 返回登录页</a>
       <div class="brand">BROKENLOOP / MY LIBRARY</div>
     </header>
+
+    <section class="member-bar">
+      <div class="member-info">
+        <div class="member-avatar" id="memberAvatar">B</div>
+        <div>
+          <div class="member-label">MEMBER / 会员</div>
+          <div class="member-email" id="memberEmail">Loading...</div>
+        </div>
+      </div>
+
+      <button id="logoutBtn" class="logout-btn" type="button">
+        Logout / 登出
+      </button>
+    </section>
 
     <section class="hero">
       <div class="badge">MEMBER LIBRARY / 会员歌单</div>
@@ -39,7 +53,7 @@
         Purchased songs will stay in your account and can be played anytime after login.
       </p>
       <p class="zh">
-        未来登录后，买过的歌曲会长期保存在你的账号里，随时都能回来听。
+        登录成功后，你的会员状态会保留；除非手动登出，否则刷新页面不需要重新登录。
       </p>
     </section>
 
@@ -178,39 +192,53 @@
       </article>
     </section>
 
-    <section class="panel">
-      <div class="panel-head">
-        <h2>How It Will Work / 以后会怎么运作</h2>
-        <span>Future Logic</span>
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
       </div>
 
-      <div class="logic-list">
-        <div class="logic-item">
-          <strong>Members / 会员</strong>
-          <p>Login with Google or phone, buy once, and keep songs in your library.</p>
-        </div>
-        <div class="logic-item">
-          <strong>Guests / 游客</strong>
-          <p>Preview and buy directly, but no permanent member library.</p>
-        </div>
-        <div class="logic-item">
-          <strong>Upgrades / 升级后</strong>
-          <p>Real login, real purchases, and automatic unlock will replace this prototype.</p>
-        </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
       </div>
-    </section>
-  <footer class="site-footer">
-  <div class="footer-brand">
-    <div class="footer-logo">BROKENLOOP</div>
-    <p>Loops for the hearts that stayed too long.</p>
-  </div>
+    </footer>
+  </main>
 
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="about.html">About</a>
-    <a href="login.html">Login</a>
-  </div>
-  </footer></main>
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+    const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const memberEmail = document.getElementById('memberEmail');
+    const memberAvatar = document.getElementById('memberAvatar');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    async function loadSession() {
+      const {
+        data: { session }
+      } = await supabase.auth.getSession();
+
+      if (!session || !session.user) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const email = session.user.email || 'member@brokenloop.com';
+      memberEmail.textContent = email;
+      memberAvatar.textContent = email.charAt(0).toUpperCase();
+    }
+
+    logoutBtn.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = 'login.html';
+    });
+
+    loadSession();
+  </script>
 </body>
 </html>
