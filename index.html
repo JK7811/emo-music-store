@@ -48,11 +48,30 @@
         <p class="zh">会员未来可把已购买歌曲保存到个人歌单里，随时回来听。</p>
       </div>
 
-      <div class="actions">
+      <div id="guestActions" class="actions">
   <a href="login.html" class="button primary">Member Login / 会员登录</a>
   <a href="signup.html" class="button ghost">Sign Up / 注册会员</a>
   <a href="songs.html" class="button ghost">Preview Songs / 试听歌曲</a>
+</div>
+
+<div id="memberHero" class="member-hero hidden">
+  <div class="member-hero-card">
+    <div class="member-hero-top">
+      <div class="member-hero-avatar" id="heroAvatar">B</div>
+      <div>
+        <div class="member-hero-label">WELCOME BACK / 欢迎回来</div>
+        <h3 id="heroDisplayName">BrokenLoop Member</h3>
+        <p id="heroMemberMeta">@memberid · member@email.com</p>
       </div>
+    </div>
+
+    <div class="member-hero-actions">
+      <a href="library.html" class="button primary">My Library / 我的歌单</a>
+      <a href="profile.html" class="button ghost">Edit Profile / 编辑资料</a>
+      <button id="heroLogoutBtn" class="button ghost" type="button">Logout / 登出</button>
+    </div>
+  </div>
+</div>
     </section>
 
     <section class="section-head">
@@ -172,5 +191,69 @@
     <a href="login.html">Login</a>
   </div>
   </footer></main>
+  <script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const guestActions = document.getElementById('guestActions');
+  const memberHero = document.getElementById('memberHero');
+  const heroAvatar = document.getElementById('heroAvatar');
+  const heroDisplayName = document.getElementById('heroDisplayName');
+  const heroMemberMeta = document.getElementById('heroMemberMeta');
+  const heroLogoutBtn = document.getElementById('heroLogoutBtn');
+
+  async function loadHomepageMemberState() {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+    if (!session || !session.user) {
+      guestActions.classList.remove('hidden');
+      memberHero.classList.add('hidden');
+      return;
+    }
+
+    guestActions.classList.add('hidden');
+    memberHero.classList.remove('hidden');
+
+    const email = session.user.email || '';
+    let displayName = 'BrokenLoop Member';
+    let memberId = 'member';
+
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('member_id, display_name, avatar_url')
+      .eq('id', session.user.id)
+      .maybeSingle();
+
+    if (!error && data) {
+      if (data.display_name) displayName = data.display_name;
+      if (data.member_id) memberId = data.member_id;
+      if (data.avatar_url) {
+        heroAvatar.style.backgroundImage = `url('${data.avatar_url}')`;
+        heroAvatar.style.backgroundSize = 'cover';
+        heroAvatar.style.backgroundPosition = 'center';
+        heroAvatar.textContent = '';
+      }
+    }
+
+    if (!heroAvatar.style.backgroundImage) {
+      heroAvatar.textContent = (displayName || email || 'B').charAt(0).toUpperCase();
+    }
+
+    heroDisplayName.textContent = displayName;
+    heroMemberMeta.textContent = `@${memberId} · ${email}`;
+  }
+
+  heroLogoutBtn?.addEventListener('click', async () => {
+    await supabase.auth.signOut();
+    window.location.href = 'index.html';
+  });
+
+  loadHomepageMemberState();
+  </script>
 </body>
 </html>
