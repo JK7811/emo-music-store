@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - BrokenLoop</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+  <div class="bg-glow glow-3"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="login.html" class="back">← Back / 返回登录页</a>
+      <div class="brand">BROKENLOOP / SIGN UP</div>
+    </header>
+
+    <section class="signup-card">
+      <div class="left-panel">
+        <div class="badge">MEMBER SIGN UP / 会员注册</div>
+        <h1>
+          Create your member account
+          <span>先用邮箱和密码注册，再去邮箱完成验证。</span>
+        </h1>
+
+        <p>
+          This is the first step of the member system: email registration, email confirmation, then normal sign-in.
+        </p>
+        <p class="zh">
+          这是会员系统的第一步：先用邮箱注册，再验证邮箱，之后正常登录。
+        </p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Email + Password</strong>
+            <p>Simple and stable member registration flow.</p>
+          </div>
+          <div class="feature-item">
+            <strong>Email Confirmation</strong>
+            <p>After sign up, confirm your email from the inbox.</p>
+          </div>
+          <div class="feature-item">
+            <strong>Profile Setup Later</strong>
+            <p>Member ID, display name, and avatar can be added next.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="form-card">
+          <div class="mini-badge">REGISTER / 注册</div>
+
+          <label class="field">
+            <span>Email Address / 邮箱地址</span>
+            <input id="signupEmail" type="email" placeholder="you@example.com" />
+          </label>
+
+          <label class="field">
+            <span>Password / 密码</span>
+            <input id="signupPassword" type="password" placeholder="At least 6 characters" />
+          </label>
+
+          <label class="field">
+            <span>Confirm Password / 确认密码</span>
+            <input id="signupPasswordConfirm" type="password" placeholder="Repeat password" />
+          </label>
+
+          <button id="signupBtn" class="signup-btn" type="button">
+            Create Member Account / 注册会员
+          </button>
+
+          <a href="login.html" class="secondary-link">
+            Already a member? Sign in / 已是会员？去登录
+          </a>
+
+          <div class="note-box">
+            <p>
+              After registration, please check your email and confirm your account.
+            </p>
+            <p>
+              注册完成后，请到邮箱完成验证，再回来登录。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const supabaseUrl = 'YOUR_SUPABASE_URL';
+    const supabaseKey = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const signupEmail = document.getElementById('signupEmail');
+    const signupPassword = document.getElementById('signupPassword');
+    const signupPasswordConfirm = document.getElementById('signupPasswordConfirm');
+    const signupBtn = document.getElementById('signupBtn');
+
+    signupBtn.addEventListener('click', async () => {
+      const email = signupEmail.value.trim();
+      const password = signupPassword.value;
+      const confirmPassword = signupPasswordConfirm.value;
+
+      if (!email || !password || !confirmPassword) {
+        alert('Please complete all fields / 请填写完整');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match / 两次密码不一致');
+        return;
+      }
+
+      signupBtn.disabled = true;
+      signupBtn.textContent = 'Creating... / 注册中...';
+
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: 'https://emo-music-store.vercel.app/login.html'
+        }
+      });
+
+      if (error) {
+        alert('Sign up failed / 注册失败：' + error.message);
+        signupBtn.disabled = false;
+        signupBtn.textContent = 'Create Member Account / 注册会员';
+        return;
+      }
+
+      alert('Account created. Please verify your email first. / 注册成功，请先到邮箱完成验证。');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
