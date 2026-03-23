@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - BrokenLoop</title>
+  <link rel="stylesheet" href="/profile.css?v=1" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+  <div class="bg-glow glow-3"></div>
+
+  <main class="page">
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html" class="active">Login</a>
+      </nav>
+    </header>
+
+    <header class="topbar">
+      <a href="library.html" class="back">← Back / 返回会员页</a>
+      <div class="brand">BROKENLOOP / PROFILE</div>
+    </header>
+
+    <section class="profile-shell">
+      <section class="profile-card">
+        <div class="badge">MEMBER PROFILE / 会员资料</div>
+        <h1>Profile Setup</h1>
+        <p class="desc">Set your member ID and display name here.</p>
+
+        <div class="member-box">
+          <div class="avatar" id="profileAvatar">B</div>
+          <div>
+            <div class="mini-label">EMAIL / 邮箱</div>
+            <div class="email" id="profileEmail">Loading...</div>
+          </div>
+        </div>
+
+        <label class="field">
+          <span>Member ID / 会员编号</span>
+          <input id="memberIdInput" type="text" placeholder="e.g. brokenloop01" />
+        </label>
+
+        <label class="field">
+          <span>Display Name / 显示名称</span>
+          <input id="displayNameInput" type="text" placeholder="Your display name" />
+        </label>
+
+        <label class="field">
+          <span>Avatar URL / 头像链接</span>
+          <input id="avatarUrlInput" type="text" placeholder="https://..." />
+        </label>
+
+        <div class="actions">
+          <button id="saveProfileBtn" class="button primary" type="button">Save Profile / 保存资料</button>
+          <a href="library.html" class="button ghost">Back to Library / 返回歌单</a>
+        </div>
+
+        <div class="note-box">
+          <p>Member ID must be unique.</p>
+          <p>会员编号不能重复。</p>
+        </div>
+      </section>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const supabaseUrl = 'YOUR_SUPABASE_URL';
+    const supabaseKey = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const profileEmail = document.getElementById('profileEmail');
+    const profileAvatar = document.getElementById('profileAvatar');
+    const memberIdInput = document.getElementById('memberIdInput');
+    const displayNameInput = document.getElementById('displayNameInput');
+    const avatarUrlInput = document.getElementById('avatarUrlInput');
+    const saveProfileBtn = document.getElementById('saveProfileBtn');
+
+    let currentUser = null;
+
+    async function loadProfile() {
+      const {
+        data: { session }
+      } = await supabase.auth.getSession();
+
+      if (!session || !session.user) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      currentUser = session.user;
+      const email = currentUser.email || '';
+      profileEmail.textContent = email;
+      profileAvatar.textContent = email ? email.charAt(0).toUpperCase() : 'B';
+
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', currentUser.id)
+        .maybeSingle();
+
+      if (!error && data) {
+        memberIdInput.value = data.member_id || '';
+        displayNameInput.value = data.display_name || '';
+        avatarUrlInput.value = data.avatar_url || '';
+      }
+    }
+
+    saveProfileBtn.addEventListener('click', async () => {
+      if (!currentUser) return;
+
+      const member_id = memberIdInput.value.trim();
+      const display_name = displayNameInput.value.trim();
+      const avatar_url = avatarUrlInput.value.trim();
+
+      if (!member_id) {
+        alert('Please enter member ID / 请输入会员编号');
+        return;
+      }
+
+      saveProfileBtn.disabled = true;
+      saveProfileBtn.textContent = 'Saving... / 保存中...';
+
+      const { error } = await supabase.from('profiles').upsert({
+        id: currentUser.id,
+        member_id,
+        display_name,
+        avatar_url,
+        updated_at: new Date().toISOString()
+      });
+
+      if (error) {
+        alert('Save failed / 保存失败：' + error.message);
+        saveProfileBtn.disabled = false;
+        saveProfileBtn.textContent = 'Save Profile / 保存资料';
+        return;
+      }
+
+      alert('Profile saved / 资料已保存');
+      saveProfileBtn.disabled = false;
+      saveProfileBtn.textContent = 'Save Profile / 保存资料';
+    });
+
+    loadProfile();
+  </script>
+</body>
+</html>
