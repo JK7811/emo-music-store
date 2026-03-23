@@ -66,12 +66,12 @@
 
           <label class="field">
             <span>Email Address / 邮箱地址</span>
-            <input type="email" placeholder="you@example.com" />
+            <input id="emailInput" type="email" placeholder="you@example.com" />
           </label>
 
-          <a href="library.html" class="login-btn email">
-            Continue with Email / 使用邮箱继续
-          </a>
+          <button id="emailLoginBtn" class="login-btn email" type="button">
+  Continue with Email / 使用邮箱继续
+</button>
 
           <div class="divider">
             <span>or / 或</span>
@@ -111,5 +111,48 @@
       </div>
     </footer>
   </main>
+
+  <script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const emailInput = document.getElementById('emailInput');
+  const emailLoginBtn = document.getElementById('emailLoginBtn');
+
+  // 如果已经登录，直接去会员区
+  const {
+    data: { session }
+  } = await supabase.auth.getSession();
+
+  if (session) {
+    window.location.href = 'library.html';
+  }
+
+  emailLoginBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+
+    if (!email) {
+      alert('Please enter your email / 请输入邮箱');
+      return;
+    }
+
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: 'https://emo-music-store.vercel.app/login.html'
+      }
+    });
+
+    if (error) {
+      alert('Login failed / 登录失败：' + error.message);
+      return;
+    }
+
+    alert('Magic link sent / 登录邮件已发送，请到邮箱打开链接。');
+  });
+  </script>
 </body>
 </html>
