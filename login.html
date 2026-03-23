@@ -115,14 +115,13 @@
   <script type="module">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
-  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabaseUrl = 'YOUR_SUPABASE_URL';
+  const supabaseKey = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   const emailInput = document.getElementById('emailInput');
   const emailLoginBtn = document.getElementById('emailLoginBtn');
 
-  // 如果已经登录，直接去会员区
   const {
     data: { session }
   } = await supabase.auth.getSession();
@@ -139,6 +138,9 @@
       return;
     }
 
+    emailLoginBtn.disabled = true;
+    emailLoginBtn.textContent = 'Sending... / 发送中...';
+
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
@@ -148,10 +150,13 @@
 
     if (error) {
       alert('Login failed / 登录失败：' + error.message);
+      emailLoginBtn.disabled = false;
+      emailLoginBtn.textContent = 'Continue with Email / 使用邮箱继续';
       return;
     }
 
     alert('Magic link sent / 登录邮件已发送，请到邮箱打开链接。');
+    emailLoginBtn.textContent = 'Check your email / 请检查邮箱';
   });
   </script>
 </body>
