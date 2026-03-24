@@ -166,7 +166,7 @@
 
     if (file) {
       const ext = file.name.split('.').pop();
-      const filePath = `${currentUser.id}/avatar.${ext}`;
+      const filePath = `${currentUser.id}/avatar-${Date.now()}.${ext}`;
 
       const { error: uploadError } = await supabase
         .storage
