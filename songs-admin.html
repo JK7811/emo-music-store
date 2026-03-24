@@ -183,5 +183,58 @@
       </div>
     </footer>
   </main>
+
+  <section class="admin-section">
+  <div class="section-head">
+    <h2>Real Songs from Supabase / 真实歌曲列表</h2>
+    <p>Loaded from songs table</p>
+  </div>
+
+  <div id="songsAdminList" class="songs-admin-list"></div>
+  </section>
+
+  <script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const songsAdminList = document.getElementById('songsAdminList');
+
+  async function loadSongs() {
+    songsAdminList.innerHTML = '<p>Loading songs...</p>';
+
+    const { data, error } = await supabase
+      .from('songs')
+      .select('*')
+      .order('id', { ascending: true });
+
+    if (error) {
+      songsAdminList.innerHTML = `<p>Failed to load songs: ${error.message}</p>`;
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      songsAdminList.innerHTML = '<p>No songs found.</p>';
+      return;
+    }
+
+    songsAdminList.innerHTML = data.map(song => `
+      <div class="song-admin-card">
+        <h3>${song.title || 'Untitled'}</h3>
+        <p><strong>English Title:</strong> ${song.title_en || '-'}</p>
+        <p><strong>Artist:</strong> ${song.artist || '-'}</p>
+        <p><strong>Price:</strong> ${song.price_sgd ?? '-'}</p>
+        <p><strong>Status:</strong> ${song.status || '-'}</p>
+        <p><strong>Placement:</strong> ${song.placement || '-'}</p>
+        <p><strong>Preview Uploaded:</strong> ${song.preview_uploaded ? 'Yes' : 'No'}</p>
+        <p><strong>Full Uploaded:</strong> ${song.full_uploaded ? 'Yes' : 'No'}</p>
+      </div>
+    `).join('');
+  }
+
+  loadSongs();
+  </script>
 </body>
 </html>
