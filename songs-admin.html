@@ -172,7 +172,63 @@
   const publishedSongsCount = document.getElementById('publishedSongsCount');
   const draftSongsCount = document.getElementById('draftSongsCount');
   const featuredSongsCount = document.getElementById('featuredSongsCount');
+  const newSongTitle = document.getElementById('newSongTitle');
+  const newSongTitleEn = document.getElementById('newSongTitleEn');
+  const newSongArtist = document.getElementById('newSongArtist');
+  const newSongPrice = document.getElementById('newSongPrice');
+  const newSongStatus = document.getElementById('newSongStatus');
+  const newSongPlacement = document.getElementById('newSongPlacement');
+  const createSongBtn = document.getElementById('createSongBtn');
 
+    createSongBtn.addEventListener('click', async () => {
+  const title = newSongTitle.value.trim();
+  const title_en = newSongTitleEn.value.trim();
+  const artist = newSongArtist.value.trim();
+  const price_sgd = parseFloat(newSongPrice.value);
+  const status = newSongStatus.value;
+  const placement = newSongPlacement.value;
+
+  if (!title) {
+    alert('Please enter title / 请输入歌名');
+    return;
+  }
+
+  createSongBtn.disabled = true;
+  createSongBtn.textContent = 'Creating... / 新增中...';
+
+  const { error } = await supabase.from('songs').insert({
+    title,
+    title_en,
+    artist,
+    price_sgd: isNaN(price_sgd) ? null : price_sgd,
+    status,
+    placement,
+    preview_uploaded: false,
+    full_uploaded: false
+  });
+
+  if (error) {
+    alert('Create song failed / 新增失败：' + error.message);
+    createSongBtn.disabled = false;
+    createSongBtn.textContent = '+ Add New Song / 新增歌曲';
+    return;
+  }
+
+  alert('Song created / 歌曲已新增');
+
+  newSongTitle.value = '';
+  newSongTitleEn.value = '';
+  newSongArtist.value = '';
+  newSongPrice.value = '';
+  newSongStatus.value = 'draft';
+  newSongPlacement.value = 'regular';
+
+  createSongBtn.disabled = false;
+  createSongBtn.textContent = '+ Add New Song / 新增歌曲';
+
+  loadSongs();
+});
+    
   async function loadSongs() {
     songsAdminList.innerHTML = '<p>Loading songs...</p>';
 
