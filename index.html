@@ -216,16 +216,62 @@
 
   loadHomepageMemberState();
 <script type="module">
-      if (!error && data) {
-      if (data.display_name && data.display_name.trim() !== '') {
-        displayName = data.display_name.trim();
-      }
-      if (data.member_id && data.member_id.trim() !== '') {
-        memberId = data.member_id.trim();
-      }
-      if (data.avatar_url && data.avatar_url.trim() !== '') {
-        avatarUrl = data.avatar_url.trim();
-      }
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const supabaseUrl = 'YOUR_SUPABASE_URL';
+  const supabaseKey = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const guestActions = document.getElementById('guestActions');
+  const memberHero = document.getElementById('memberHero');
+  const heroAvatar = document.getElementById('heroAvatar');
+  const heroDisplayName = document.getElementById('heroDisplayName');
+  const heroMemberMeta = document.getElementById('heroMemberMeta');
+  const heroLogoutBtn = document.getElementById('heroLogoutBtn');
+
+  async function loadHomepageMemberState() {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+    // 没登录 = 游客首页
+    if (!session || !session.user) {
+      guestActions.classList.remove('hidden');
+      memberHero.classList.add('hidden');
+      return;
+    }
+
+    // 已登录 = 先隐藏游客按钮，显示会员区
+    guestActions.classList.add('hidden');
+    memberHero.classList.remove('hidden');
+
+    const email = session.user.email || '';
+    let displayName = 'BrokenLoop Member';
+    let memberId = 'member';
+    let avatarUrl = '';
+
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('member_id, display_name, avatar_url')
+      .eq('id', session.user.id)
+      .maybeSingle();
+
+    // 已登录但还没填 profile，就去 profile
+    if (error || !data || !data.member_id || data.member_id.trim() === '') {
+      window.location.href = 'profile.html';
+      return;
+    }
+
+    if (data.display_name && data.display_name.trim() !== '') {
+      displayName = data.display_name.trim();
+    }
+
+    if (data.member_id && data.member_id.trim() !== '') {
+      memberId = data.member_id.trim();
+    }
+
+    if (data.avatar_url && data.avatar_url.trim() !== '') {
+      avatarUrl = data.avatar_url.trim();
     }
 
     heroDisplayName.textContent = displayName;
