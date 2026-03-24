@@ -203,6 +203,104 @@
 
   <div id="coverUploadResult" class="upload-result"></div>
   </section>
+
+  <script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const coverSongSelect = document.getElementById('coverSongSelect');
+  const coverFileInput = document.getElementById('coverFileInput');
+  const uploadCoverBtn = document.getElementById('uploadCoverBtn');
+  const coverUploadResult = document.getElementById('coverUploadResult');
+
+  async function loadSongsForCoverSelect() {
+    const { data, error } = await supabase
+      .from('songs')
+      .select('id, title')
+      .order('id', { ascending: true });
+
+    if (error) {
+      coverUploadResult.textContent = 'Failed to load songs / 读取歌曲失败';
+      return;
+    }
+
+    const songs = data || [];
+
+    coverSongSelect.innerHTML = `
+      <option value="">Select Song / 选择歌曲</option>
+      ${songs.map(song => `<option value="${song.id}">${song.title || 'Untitled'}</option>`).join('')}
+    `;
+  }
+
+  uploadCoverBtn.addEventListener('click', async () => {
+    const songId = coverSongSelect.value;
+    const file = coverFileInput.files[0];
+
+    if (!songId) {
+      alert('Please select a song / 请选择歌曲');
+      return;
+    }
+
+    if (!file) {
+      alert('Please choose a cover file / 请选择封面图片');
+      return;
+    }
+
+    uploadCoverBtn.disabled = true;
+    uploadCoverBtn.textContent = 'Uploading... / 上传中...';
+    coverUploadResult.textContent = '';
+
+    const ext = file.name.split('.').pop();
+    const filePath = `song-${songId}/cover-${Date.now()}.${ext}`;
+
+    const { error: uploadError } = await supabase
+      .storage
+      .from('covers')
+      .upload(filePath, file, {
+        upsert: true,
+        contentType: file.type
+      });
+
+    if (uploadError) {
+      coverUploadResult.textContent = 'Upload failed / 上传失败：' + uploadError.message;
+      uploadCoverBtn.disabled = false;
+      uploadCoverBtn.textContent = 'Upload Cover / 上传封面';
+      return;
+    }
+
+    const { data: publicData } = supabase
+      .storage
+      .from('covers')
+      .getPublicUrl(filePath);
+
+    const cover_url = publicData.publicUrl;
+
+    const { error: updateError } = await supabase
+      .from('songs')
+      .update({
+        cover_url,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', songId);
+
+    if (updateError) {
+      coverUploadResult.textContent = 'Saved file but update song failed / 图片已上传但歌曲资料更新失败：' + updateError.message;
+      uploadCoverBtn.disabled = false;
+      uploadCoverBtn.textContent = 'Upload Cover / 上传封面';
+      return;
+    }
+
+    coverUploadResult.textContent = 'Cover uploaded successfully / 封面上传成功';
+    coverFileInput.value = '';
+    uploadCoverBtn.disabled = false;
+    uploadCoverBtn.textContent = 'Upload Cover / 上传封面';
+  });
+
+  loadSongsForCoverSelect();
+  </script>
   
 </body>
 </html>
