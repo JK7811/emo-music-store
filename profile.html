@@ -210,7 +210,13 @@
       });
 
     if (error) {
-  if (error.message && error.message.toLowerCase().includes('duplicate key')) {
+  const msg = (error.message || '').toLowerCase();
+
+  if (
+    msg.includes('duplicate key') ||
+    msg.includes('profiles_member_id_key') ||
+    msg.includes('unique')
+  ) {
     alert('This member ID is already taken / 这个会员编号已被使用');
   } else {
     alert('Save failed / 保存失败：' + error.message);
