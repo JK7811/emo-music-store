@@ -220,19 +220,50 @@
     const logoutBtn = document.getElementById('logoutBtn');
 
     async function loadSession() {
-      const {
-        data: { session }
-      } = await supabase.auth.getSession();
+      <script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-      if (!session || !session.user) {
-        window.location.href = 'login.html';
-        return;
-      }
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
-      const email = session.user.email || 'member@brokenloop.com';
-      memberEmail.textContent = email;
-      memberAvatar.textContent = email.charAt(0).toUpperCase();
+  const memberEmail = document.getElementById('memberEmail');
+  const memberAvatar = document.getElementById('memberAvatar');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  async function loadSession() {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+    if (!session || !session.user) {
+      window.location.href = 'login.html';
+      return;
     }
+
+    const email = session.user.email || 'member@brokenloop.com';
+    memberEmail.textContent = email;
+    memberAvatar.textContent = email.charAt(0).toUpperCase();
+
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('member_id')
+      .eq('id', session.user.id)
+      .maybeSingle();
+
+    if (error || !data || !data.member_id || data.member_id.trim() === '') {
+      window.location.href = 'profile.html';
+      return;
+    }
+  }
+
+  logoutBtn.addEventListener('click', async () => {
+    await supabase.auth.signOut();
+    window.location.href = 'login.html';
+  });
+
+  loadSession();
+</script>
 
     logoutBtn.addEventListener('click', async () => {
       await supabase.auth.signOut();
