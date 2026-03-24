@@ -374,3 +374,9 @@ body {
   line-height: 1.8;
   font-size: 15px;
 }
+
+.logo-image {
+  height: 36px;
+  width: auto;
+  display: block;
+}
