@@ -256,6 +256,12 @@
             <button class="mini-btn edit-song-btn" data-id="${song.id}">
               Edit / 编辑
             </button>
+            <button class="mini-btn hide-song-btn" data-id="${song.id}">
+              Hide / 隐藏
+            </button>
+            <button class="mini-btn delete-song-btn danger-btn" data-id="${song.id}">
+              Delete / 删除
+            </button>
           </div>
         </div>
       `;
@@ -282,6 +288,50 @@
           top: 0,
           behavior: 'smooth'
         });
+      });
+    });
+
+    document.querySelectorAll('.hide-song-btn').forEach(button => {
+      button.addEventListener('click', async () => {
+        const songId = Number(button.dataset.id);
+
+        const ok = confirm('Hide this song? / 确定隐藏这首歌吗？');
+        if (!ok) return;
+
+        const { error } = await supabase
+          .from('songs')
+          .update({ status: 'hidden' })
+          .eq('id', songId);
+
+        if (error) {
+          alert('Hide failed / 隐藏失败：' + error.message);
+          return;
+        }
+
+        alert('Song hidden / 歌曲已隐藏');
+        loadSongs();
+      });
+    });
+
+    document.querySelectorAll('.delete-song-btn').forEach(button => {
+      button.addEventListener('click', async () => {
+        const songId = Number(button.dataset.id);
+
+        const ok = confirm('Are you sure you want to delete this song? / 确定要删除这首歌吗？');
+        if (!ok) return;
+
+        const { error } = await supabase
+          .from('songs')
+          .delete()
+          .eq('id', songId);
+
+        if (error) {
+          alert('Delete failed / 删除失败：' + error.message);
+          return;
+        }
+
+        alert('Song deleted / 歌曲已删除');
+        loadSongs();
       });
     });
   }
