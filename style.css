@@ -376,7 +376,10 @@ body {
 }
 
 .logo-image {
-  height: 36px;
-  width: auto;
   display: block;
+  width: auto;
+}
+
+.header-logo {
+  height: 34px;
 }
