@@ -183,19 +183,50 @@
       return;
     }
 
-    songsAdminList.innerHTML = songs.map(song => `
-      <div class="song-admin-card">
-        <h3>${song.title || 'Untitled'}</h3>
-        <p><strong>English Title:</strong> ${song.title_en || '-'}</p>
-        <p><strong>Artist:</strong> ${song.artist || '-'}</p>
-        <p><strong>Price:</strong> ${song.price_sgd ?? '-'}</p>
-        <p><strong>Status:</strong> ${song.status || '-'}</p>
-        <p><strong>Placement:</strong> ${song.placement || '-'}</p>
-        <p><strong>Preview Uploaded:</strong> ${song.preview_uploaded ? 'Yes' : 'No'}</p>
-        <p><strong>Full Uploaded:</strong> ${song.full_uploaded ? 'Yes' : 'No'}</p>
+    songsAdminList.innerHTML = songs.map(song => {
+  const status = (song.status || '').toLowerCase();
+  const placement = (song.placement || '').toLowerCase();
+
+  const statusClass =
+    status === 'published' ? 'status-published' :
+    status === 'draft' ? 'status-draft' :
+    status === 'hidden' ? 'status-hidden' :
+    'status-default';
+
+  const placementClass =
+    placement === 'featured' ? 'placement-featured' : 'placement-regular';
+
+  return `
+    <div class="song-admin-card">
+      <div class="song-admin-top">
+        <div>
+          <h3>${song.title || 'Untitled'}</h3>
+          <p class="song-admin-meta">
+            ${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}
+          </p>
+          <p class="song-admin-sub">
+            ${song.title_en || '-'}
+          </p>
+        </div>
       </div>
-    `).join('');
-  }
+
+      <div class="song-admin-badges">
+        <span class="badge-chip ${placementClass}">
+          ${song.placement || 'regular'}
+        </span>
+        <span class="badge-chip ${statusClass}">
+          ${song.status || 'unknown'}
+        </span>
+        <span class="badge-chip file-chip ${song.preview_uploaded ? 'file-ready' : 'file-missing'}">
+          Preview ${song.preview_uploaded ? 'Uploaded' : 'Missing'}
+        </span>
+        <span class="badge-chip file-chip ${song.full_uploaded ? 'file-ready' : 'file-missing'}">
+          Full ${song.full_uploaded ? 'Uploaded' : 'Missing'}
+        </span>
+      </div>
+    </div>
+  `;
+}).join('');
 
   loadSongs();
   </script>
