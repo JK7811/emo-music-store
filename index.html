@@ -103,68 +103,77 @@
   </main>
 
   <script type="module">
-    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-    const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
-    const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
-    const supabase = createClient(supabaseUrl, supabaseKey);
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const guestActions = document.getElementById('guestActions');
-    const memberHero = document.getElementById('memberHero');
-    const heroAvatar = document.getElementById('heroAvatar');
-    const heroDisplayName = document.getElementById('heroDisplayName');
-    const heroMemberMeta = document.getElementById('heroMemberMeta');
-    const heroLogoutBtn = document.getElementById('heroLogoutBtn');
+  const guestActions = document.getElementById('guestActions');
+  const memberHero = document.getElementById('memberHero');
+  const heroAvatar = document.getElementById('heroAvatar');
+  const heroDisplayName = document.getElementById('heroDisplayName');
+  const heroMemberMeta = document.getElementById('heroMemberMeta');
+  const heroLogoutBtn = document.getElementById('heroLogoutBtn');
 
-    async function loadHomepageMemberState() {
-      const {
-        data: { session }
-      } = await supabase.auth.getSession();
+  async function loadHomepageMemberState() {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
 
-      if (!session || !session.user) {
-        guestActions.classList.remove('hidden');
-        memberHero.classList.add('hidden');
-        return;
-      }
-
-      guestActions.classList.add('hidden');
-      memberHero.classList.remove('hidden');
-
-      const email = session.user.email || '';
-      let displayName = 'BrokenLoop Member';
-      let memberId = 'member';
-
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('member_id, display_name, avatar_url')
-        .eq('id', session.user.id)
-        .maybeSingle();
-
-      if (!error && data) {
-        if (data.display_name) displayName = data.display_name;
-        if (data.member_id) memberId = data.member_id;
-        if (data.avatar_url) {
-          heroAvatar.style.backgroundImage = `url('${data.avatar_url}')`;
-          heroAvatar.style.backgroundSize = 'cover';
-          heroAvatar.style.backgroundPosition = 'center';
-          heroAvatar.textContent = '';
-        }
-      }
-
-      if (!heroAvatar.style.backgroundImage) {
-        heroAvatar.textContent = (displayName || email || 'B').charAt(0).toUpperCase();
-      }
-
-      heroDisplayName.textContent = displayName;
-      heroMemberMeta.textContent = `@${memberId} · ${email}`;
+    if (!session || !session.user) {
+      guestActions.classList.remove('hidden');
+      memberHero.classList.add('hidden');
+      return;
     }
 
-    heroLogoutBtn?.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      window.location.href = 'index.html';
-    });
+    guestActions.classList.add('hidden');
+    memberHero.classList.remove('hidden');
 
-    loadHomepageMemberState();
+    const email = session.user.email || '';
+    let displayName = 'BrokenLoop Member';
+    let memberId = 'member';
+    let avatarUrl = '';
+
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('member_id, display_name, avatar_url')
+      .eq('id', session.user.id)
+      .maybeSingle();
+
+    if (!error && data) {
+      if (data.display_name && data.display_name.trim() !== '') {
+        displayName = data.display_name.trim();
+      }
+      if (data.member_id && data.member_id.trim() !== '') {
+        memberId = data.member_id.trim();
+      }
+      if (data.avatar_url && data.avatar_url.trim() !== '') {
+        avatarUrl = data.avatar_url.trim();
+      }
+    }
+
+    heroDisplayName.textContent = displayName;
+    heroMemberMeta.textContent = `@${memberId} · ${email}`;
+
+    if (avatarUrl) {
+      heroAvatar.style.backgroundImage = `url('${avatarUrl}')`;
+      heroAvatar.style.backgroundSize = 'cover';
+      heroAvatar.style.backgroundPosition = 'center';
+      heroAvatar.style.backgroundRepeat = 'no-repeat';
+      heroAvatar.textContent = '';
+    } else {
+      heroAvatar.style.backgroundImage = 'none';
+      heroAvatar.textContent = displayName.charAt(0).toUpperCase();
+    }
+  }
+
+  heroLogoutBtn?.addEventListener('click', async () => {
+    await supabase.auth.signOut();
+    window.location.href = 'index.html';
+  });
+
+  loadHomepageMemberState();
   </script>
 </body>
 </html>
