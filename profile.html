@@ -95,6 +95,17 @@
   const memberIdInput = document.getElementById('memberIdInput');
   const displayNameInput = document.getElementById('displayNameInput');
   const avatarFileInput = document.getElementById('avatarFileInput');
+    avatarFileInput.addEventListener('change', () => {
+  const file = avatarFileInput.files[0];
+  if (!file) return;
+
+  const previewUrl = URL.createObjectURL(file);
+  profileAvatar.style.backgroundImage = `url('${previewUrl}')`;
+  profileAvatar.style.backgroundSize = 'cover';
+  profileAvatar.style.backgroundPosition = 'center';
+  profileAvatar.style.backgroundRepeat = 'no-repeat';
+  profileAvatar.textContent = '';
+});
   const saveProfileBtn = document.getElementById('saveProfileBtn');
 
   let currentUser = null;
