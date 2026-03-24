@@ -413,3 +413,30 @@ body {
     text-align: center;
   }
 }
+
+.upload-form-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.upload-form-grid select,
+.upload-form-grid input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  font: inherit;
+}
+
+.upload-form-grid input::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+
+.upload-result {
+  margin-top: 14px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.7;
+}
