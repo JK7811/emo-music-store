@@ -92,61 +92,8 @@
         <span>Latest Entries</span>
       </div>
 
-      <div class="song-list">
-        <div class="song-row">
-          <div class="song-main">
-            <strong>慢慢的索嗨</strong>
-            <p>BrokenLoop · SGD 3.90 · 试听已上传</p>
-          </div>
-          <div class="song-tag featured">Featured / 主打</div>
-          <div class="song-status published">Published / 已上架</div>
-          <div class="row-actions">
-            <button class="mini-btn">Edit / 编辑</button>
-            <button class="mini-btn">Preview / 预览</button>
-          </div>
-        </div>
-
-        <div class="song-row">
-          <div class="song-main">
-            <strong>Midnight Loop</strong>
-            <p>BrokenLoop · SGD 4.90 · 试听已上传</p>
-          </div>
-          <div class="song-tag regular">Regular / 普通</div>
-          <div class="song-status published">Published / 已上架</div>
-          <div class="row-actions">
-            <button class="mini-btn">Edit / 编辑</button>
-            <button class="mini-btn">Preview / 预览</button>
-          </div>
-        </div>
-
-        <div class="song-row">
-          <div class="song-main">
-            <strong>Afterlove Demo</strong>
-            <p>BrokenLoop · Draft · 完整版未上传</p>
-          </div>
-          <div class="song-tag regular">Regular / 普通</div>
-          <div class="song-status draft">Draft / 草稿</div>
-          <div class="row-actions">
-            <button class="mini-btn">Edit / 编辑</button>
-            <button class="mini-btn">Preview / 预览</button>
-          </div>
-        </div>
-
-        <div class="song-row">
-          <div class="song-main">
-            <strong>Empty Seat</strong>
-            <p>BrokenLoop · Hidden · 试听未上传</p>
-          </div>
-          <div class="song-tag regular">Regular / 普通</div>
-          <div class="song-status hidden">Hidden / 隐藏</div>
-          <div class="row-actions">
-            <button class="mini-btn">Edit / 编辑</button>
-            <button class="mini-btn">Preview / 预览</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
+      <div id="songsAdminList" class="songs-admin-list"></div>
+      
     <section class="panel notes-panel">
       <div class="panel-head">
         <h2>How Song Management Will Work / 歌曲管理未来逻辑</h2>
@@ -183,15 +130,6 @@
       </div>
     </footer>
   </main>
-
-  <section class="admin-section">
-  <div class="section-head">
-    <h2>Real Songs from Supabase / 真实歌曲列表</h2>
-    <p>Loaded from songs table</p>
-  </div>
-
-  <div id="songsAdminList" class="songs-admin-list"></div>
-  </section>
 
   <script type="module">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
