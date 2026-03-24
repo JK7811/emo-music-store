@@ -35,7 +35,7 @@
       <nav class="site-nav">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
-        <a href="login.html">Login</a>
+        <a href="login.html" id="navLoginLink">Login</a>
       </nav>
     </header>
 
@@ -99,7 +99,7 @@
       <div class="footer-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
-        <a href="login.html">Login</a>
+        <a href="login.html" id="navLoginLink">Login</a>
       </div>
     </footer>
   </main>
@@ -117,6 +117,7 @@
   const heroDisplayName = document.getElementById('heroDisplayName');
   const heroMemberMeta = document.getElementById('heroMemberMeta');
   const heroLogoutBtn = document.getElementById('heroLogoutBtn');
+  const navLoginLink = document.getElementById('navLoginLink');
 
   async function loadHomepageMemberState() {
     const {
@@ -150,9 +151,9 @@
   const heroDisplayName = document.getElementById('heroDisplayName');
   const heroMemberMeta = document.getElementById('heroMemberMeta');
   const heroLogoutBtn = document.getElementById('heroLogoutBtn');
+  const navLoginLink = document.getElementById('navLoginLink');
 
   async function loadHomepageMemberState() {
-    // 先全部隐藏，避免闪一下游客内容
     guestActions?.classList.add('hidden');
     memberHero?.classList.add('hidden');
 
@@ -162,6 +163,11 @@
 
     // 没登录：游客首页
     if (!session || !session.user) {
+      if (navLoginLink) {
+        navLoginLink.textContent = 'Login';
+        navLoginLink.href = 'login.html';
+      }
+
       guestActions?.classList.remove('hidden');
       return;
     }
@@ -177,7 +183,6 @@
       .eq('id', session.user.id)
       .maybeSingle();
 
-    // 已登录但还没完成资料
     if (error || !data || !data.member_id || data.member_id.trim() === '') {
       window.location.href = 'profile.html';
       return;
@@ -193,6 +198,11 @@
 
     if (data.avatar_url && data.avatar_url.trim() !== '') {
       avatarUrl = data.avatar_url.trim();
+    }
+
+    if (navLoginLink) {
+      navLoginLink.textContent = 'Library';
+      navLoginLink.href = 'library.html';
     }
 
     heroDisplayName.textContent = displayName;
