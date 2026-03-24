@@ -83,82 +83,86 @@
     </footer>
   </main>
 
-  <script type="module">
-    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  <<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-    const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
-    const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
-    const supabase = createClient(supabaseUrl, supabaseKey);
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const profileEmail = document.getElementById('profileEmail');
-    const profileAvatar = document.getElementById('profileAvatar');
-    const memberIdInput = document.getElementById('memberIdInput');
-    const displayNameInput = document.getElementById('displayNameInput');
-    const avatarUrlInput = document.getElementById('avatarUrlInput');
-    const saveProfileBtn = document.getElementById('saveProfileBtn');
+  const profileEmail = document.getElementById('profileEmail');
+  const profileAvatar = document.getElementById('profileAvatar');
+  const memberIdInput = document.getElementById('memberIdInput');
+  const displayNameInput = document.getElementById('displayNameInput');
+  const avatarUrlInput = document.getElementById('avatarUrlInput');
+  const saveProfileBtn = document.getElementById('saveProfileBtn');
 
-    let currentUser = null;
+  let currentUser = null;
 
-    async function loadProfile() {
-      const {
-        data: { session }
-      } = await supabase.auth.getSession();
+  async function loadProfile() {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
 
-      if (!session || !session.user) {
-        window.location.href = 'login.html';
-        return;
-      }
-
-      currentUser = session.user;
-      const email = currentUser.email || '';
-      profileEmail.textContent = email;
-      profileAvatar.textContent = email ? email.charAt(0).toUpperCase() : 'B';
-
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', currentUser.id)
-        .maybeSingle();
-
-      if (!error && data) {
-        memberIdInput.value = data.member_id || '';
-        displayNameInput.value = data.display_name || '';
-        avatarUrlInput.value = data.avatar_url || '';
-      }
+    if (!session || !session.user) {
+      window.location.href = 'login.html';
+      return;
     }
 
-    saveProfileBtn.addEventListener('click', async () => {
-      if (!currentUser) return;
+    currentUser = session.user;
 
-      const member_id = memberIdInput.value.trim();
-      const display_name = displayNameInput.value.trim();
-      const avatar_url = avatarUrlInput.value.trim();
+    const email = currentUser.email || '';
+    profileEmail.textContent = email;
+    profileAvatar.textContent = email ? email.charAt(0).toUpperCase() : 'B';
 
-      if (!member_id) {
-        alert('Please enter member ID / 请输入会员编号');
-        return;
-      }
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', currentUser.id)
+      .maybeSingle();
 
-      saveProfileBtn.disabled = true;
-      saveProfileBtn.textContent = 'Saving... / 保存中...';
+    if (!error && data) {
+      memberIdInput.value = data.member_id || '';
+      displayNameInput.value = data.display_name || '';
+      avatarUrlInput.value = data.avatar_url || '';
+    }
+  }
 
-      const { error } = await supabase.from('profiles').upsert({
-        id: currentUser.id,
-        member_id,
-        display_name,
-        avatar_url,
-        updated_at: new Date().toISOString()
-      });
+  saveProfileBtn.addEventListener('click', async () => {
+    if (!currentUser) return;
 
-      if (error) {
-        alert('Save failed / 保存失败：' + error.message);
-        saveProfileBtn.disabled = false;
-        saveProfileBtn.textContent = 'Save Profile / 保存资料';
-        return;
-      }
+    const member_id = memberIdInput.value.trim();
+    const display_name = displayNameInput.value.trim();
+    const avatar_url = avatarUrlInput.value.trim();
 
-      alert('Profile saved / 资料已保存');
-window.location.href = 'library.html';
+    if (!member_id) {
+      alert('Please enter member ID / 请输入会员编号');
+      return;
+    }
+
+    saveProfileBtn.disabled = true;
+    saveProfileBtn.textContent = 'Saving... / 保存中...';
+
+    const { error } = await supabase.from('profiles').upsert({
+      id: currentUser.id,
+      member_id,
+      display_name,
+      avatar_url,
+      updated_at: new Date().toISOString()
+    });
+
+    if (error) {
+      alert('Save failed / 保存失败：' + error.message);
+      saveProfileBtn.disabled = false;
+      saveProfileBtn.textContent = 'Save Profile / 保存资料';
+      return;
+    }
+
+    alert('Profile saved / 资料已保存');
+    window.location.href = 'library.html';
+  });
+
+  loadProfile();
   </script>
 </body>
 </html>
