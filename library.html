@@ -247,13 +247,25 @@
 
     const { data, error } = await supabase
       .from('profiles')
-      .select('member_id')
+      .select('member_id, display_name, avatar_url')
       .eq('id', session.user.id)
       .maybeSingle();
 
     if (error || !data || !data.member_id || data.member_id.trim() === '') {
       window.location.href = 'profile.html';
       return;
+    }
+
+    if (data.display_name && data.display_name.trim() !== '') {
+      memberEmail.textContent = data.display_name;
+    }
+
+    if (data.avatar_url && data.avatar_url.trim() !== '') {
+      memberAvatar.style.backgroundImage = `url('${data.avatar_url}')`;
+      memberAvatar.style.backgroundSize = 'cover';
+      memberAvatar.style.backgroundPosition = 'center';
+      memberAvatar.style.backgroundRepeat = 'no-repeat';
+      memberAvatar.textContent = '';
     }
   }
 
@@ -263,14 +275,6 @@
   });
 
   loadSession();
-</script>
-
-    logoutBtn.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      window.location.href = 'login.html';
-    });
-
-    loadSession();
   </script>
 </body>
 </html>
