@@ -95,7 +95,11 @@
   const memberIdInput = document.getElementById('memberIdInput');
   const displayNameInput = document.getElementById('displayNameInput');
   const avatarFileInput = document.getElementById('avatarFileInput');
-    avatarFileInput.addEventListener('change', () => {
+  const saveProfileBtn = document.getElementById('saveProfileBtn');
+
+  let currentUser = null;
+
+  avatarFileInput.addEventListener('change', () => {
   const file = avatarFileInput.files[0];
   if (!file) return;
 
@@ -106,9 +110,6 @@
   profileAvatar.style.backgroundRepeat = 'no-repeat';
   profileAvatar.textContent = '';
 });
-  const saveProfileBtn = document.getElementById('saveProfileBtn');
-
-  let currentUser = null;
 
   async function loadProfile() {
     const {
