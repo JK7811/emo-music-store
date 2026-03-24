@@ -210,10 +210,15 @@
       });
 
     if (error) {
-      alert('Save failed / 保存失败：' + error.message);
-      saveProfileBtn.disabled = false;
-      saveProfileBtn.textContent = 'Save Profile / 保存资料';
-      return;
+  if (error.message && error.message.toLowerCase().includes('duplicate key')) {
+    alert('This member ID is already taken / 这个会员编号已被使用');
+  } else {
+    alert('Save failed / 保存失败：' + error.message);
+  }
+
+  saveProfileBtn.disabled = false;
+  saveProfileBtn.textContent = 'Save Profile / 保存资料';
+  return;
     }
 
     alert('Profile saved / 资料已保存');
