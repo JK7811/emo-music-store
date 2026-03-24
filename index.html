@@ -74,7 +74,7 @@
         <div class="member-hero-card">
           <div class="member-hero-top">
             <div class="member-hero-avatar" id="heroAvatar">B</div>
-            <div>
+            <div>           
               <div class="member-hero-label">WELCOME BACK / 欢迎回来</div>
               <h3 id="heroDisplayName">BrokenLoop Member</h3>
               <p id="heroMemberMeta">@memberid · member@email.com</p>
@@ -139,6 +139,7 @@
     let avatarUrl = '';
 
     <script type="module">
+  <script type="module">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
   const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
@@ -161,7 +162,6 @@
       data: { session }
     } = await supabase.auth.getSession();
 
-    // 没登录：游客首页
     if (!session || !session.user) {
       if (navLoginLink) {
         navLoginLink.textContent = 'Login';
@@ -228,6 +228,7 @@
   });
 
   loadHomepageMemberState();
+</script>
   </script>
 </body>
 </html>
