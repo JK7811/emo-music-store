@@ -437,3 +437,40 @@ select {
     text-align: center;
   }
 }
+
+.songs-admin-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.song-admin-card {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.song-admin-card h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.song-admin-card p {
+  margin: 6px 0;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.7;
+}
+
+.admin-section {
+  margin-top: 28px;
+}
+
+.section-head h2 {
+  margin-bottom: 6px;
+}
+
+.section-head p {
+  margin-top: 0;
+  color: rgba(255,255,255,0.56);
+}
