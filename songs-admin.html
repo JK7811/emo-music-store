@@ -84,6 +84,34 @@
         <option>Featured / 主打</option>
         <option>Regular / 普通</option>
       </select>
+
+      <section class="panel">
+  <div class="panel-head">
+    <h2>Add New Song / 新增歌曲</h2>
+    <span>Create a song record in Supabase</span>
+  </div>
+
+  <div class="song-form-grid">
+    <input id="newSongTitle" type="text" placeholder="Title / 歌名" />
+    <input id="newSongTitleEn" type="text" placeholder="English Title / 英文名" />
+    <input id="newSongArtist" type="text" placeholder="Artist / 歌手" />
+    <input id="newSongPrice" type="number" step="0.01" placeholder="Price SGD / 价格" />
+
+    <select id="newSongStatus">
+      <option value="draft">draft</option>
+      <option value="published">published</option>
+      <option value="hidden">hidden</option>
+    </select>
+
+    <select id="newSongPlacement">
+      <option value="regular">regular</option>
+      <option value="featured">featured</option>
+    </select>
+  </div>
+
+  <button id="createSongBtn" class="add-btn">+ Add New Song / 新增歌曲</button>
+      </section>
+      
       <button class="add-btn">+ Add New Song / 新增歌曲</button>
     </section>
 
