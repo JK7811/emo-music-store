@@ -615,3 +615,18 @@ select {
 .song-form-grid input::placeholder {
   color: rgba(255,255,255,0.45);
 }
+
+.song-admin-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.mini-btn {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font: inherit;
+}
