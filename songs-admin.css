@@ -508,3 +508,89 @@ select {
     grid-template-columns: 1fr;
   }
 }
+
+.song-admin-top h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.song-admin-meta {
+  margin: 0;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+}
+
+.song-admin-sub {
+  margin: 6px 0 0;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+}
+
+.song-admin-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.badge-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+
+.status-published {
+  background: rgba(34,197,94,0.15);
+  border-color: rgba(34,197,94,0.28);
+  color: #9df0b5;
+}
+
+.status-draft {
+  background: rgba(59,130,246,0.14);
+  border-color: rgba(59,130,246,0.28);
+  color: #9dc5ff;
+}
+
+.status-hidden {
+  background: rgba(239,68,68,0.14);
+  border-color: rgba(239,68,68,0.24);
+  color: #ffb0b0;
+}
+
+.status-default {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.84);
+}
+
+.placement-featured {
+  background: rgba(250,204,21,0.16);
+  border-color: rgba(250,204,21,0.26);
+  color: #ffe58a;
+}
+
+.placement-regular {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.82);
+}
+
+.file-chip.file-ready {
+  background: rgba(168,85,247,0.14);
+  border-color: rgba(168,85,247,0.25);
+  color: #ddb7ff;
+}
+
+.file-chip.file-missing {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.55);
+}
