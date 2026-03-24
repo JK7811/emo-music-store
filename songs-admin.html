@@ -176,8 +176,10 @@
   const newSongStatus = document.getElementById('newSongStatus');
   const newSongPlacement = document.getElementById('newSongPlacement');
   const createSongBtn = document.getElementById('createSongBtn');
-
-    createSongBtn.addEventListener('click', async () => {
+  let editingSongId = null;
+    
+    <script>
+createSongBtn.addEventListener('click', async () => {
   const title = newSongTitle.value.trim();
   const title_en = newSongTitleEn.value.trim();
   const artist = newSongArtist.value.trim();
@@ -191,27 +193,50 @@
   }
 
   createSongBtn.disabled = true;
-  createSongBtn.textContent = 'Creating... / 新增中...';
+  createSongBtn.textContent = editingSongId
+    ? 'Updating... / 更新中...'
+    : 'Creating... / 新增中...';
 
-  const { error } = await supabase.from('songs').insert({
+  const payload = {
     title,
     title_en,
     artist,
     price_sgd: isNaN(price_sgd) ? null : price_sgd,
     status,
-    placement,
-    preview_uploaded: false,
-    full_uploaded: false
-  });
+    placement
+  };
+
+  let error = null;
+
+  if (editingSongId) {
+    const result = await supabase
+      .from('songs')
+      .update(payload)
+      .eq('id', editingSongId);
+
+    error = result.error;
+  } else {
+    const result = await supabase
+      .from('songs')
+      .insert({
+        ...payload,
+        preview_uploaded: false,
+        full_uploaded: false
+      });
+
+    error = result.error;
+  }
 
   if (error) {
-    alert('Create song failed / 新增失败：' + error.message);
+    alert((editingSongId ? 'Update failed / 更新失败：' : 'Create song failed / 新增失败：') + error.message);
     createSongBtn.disabled = false;
-    createSongBtn.textContent = '+ Add New Song / 新增歌曲';
+    createSongBtn.textContent = editingSongId
+      ? 'Update Song / 更新歌曲'
+      : '+ Add New Song / 新增歌曲';
     return;
   }
 
-  alert('Song created / 歌曲已新增');
+  alert(editingSongId ? 'Song updated / 歌曲已更新' : 'Song created / 歌曲已新增');
 
   newSongTitle.value = '';
   newSongTitleEn.value = '';
@@ -220,11 +245,13 @@
   newSongStatus.value = 'draft';
   newSongPlacement.value = 'regular';
 
+  editingSongId = null;
   createSongBtn.disabled = false;
   createSongBtn.textContent = '+ Add New Song / 新增歌曲';
 
   loadSongs();
 });
+</script>
     
   async function loadSongs() {
     songsAdminList.innerHTML = '<p>Loading songs...</p>';
@@ -306,8 +333,39 @@
         </span>
       </div>
     </div>
+
+    <div class="song-admin-actions">
+  <button class="mini-btn edit-song-btn" data-id="${song.id}">
+    Edit / 编辑
+  </button>
+</div>
+
   `;
 }).join('');
+    
+    document.querySelectorAll('.edit-song-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const songId = Number(button.dataset.id);
+    const song = songs.find(item => item.id === songId);
+    if (!song) return;
+
+    editingSongId = song.id;
+
+    newSongTitle.value = song.title || '';
+    newSongTitleEn.value = song.title_en || '';
+    newSongArtist.value = song.artist || '';
+    newSongPrice.value = song.price_sgd ?? '';
+    newSongStatus.value = song.status || 'draft';
+    newSongPlacement.value = song.placement || 'regular';
+
+    createSongBtn.textContent = 'Update Song / 更新歌曲';
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
 }
 
   loadSongs();
