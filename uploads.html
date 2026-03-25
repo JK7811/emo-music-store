@@ -209,6 +209,7 @@
   }
 
   uploadCoverBtn.addEventListener('click', async () => {
+  try {
     const songId = coverSongSelect.value;
     const file = coverFileInput.files[0];
 
@@ -219,6 +220,11 @@
 
     if (!file) {
       alert('Please choose a cover file / 请选择封面图片');
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert('File too large, please use image under 2MB / 图片太大，请用 2MB 以下图片');
       return;
     }
 
@@ -270,7 +276,12 @@
     coverFileInput.value = '';
     uploadCoverBtn.disabled = false;
     uploadCoverBtn.textContent = 'Upload Cover / 上传封面';
-  });
+  } catch (err) {
+    coverUploadResult.textContent = 'Upload failed / 上传失败：' + (err.message || err);
+    uploadCoverBtn.disabled = false;
+    uploadCoverBtn.textContent = 'Upload Cover / 上传封面';
+  }
+});
 
   loadSongsForCoverSelect();
   </script>
