@@ -652,3 +652,54 @@ select {
   border-color: rgba(239,68,68,0.24);
   color: #ffb0b0;
 }
+
+.song-admin-top {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.song-admin-cover-wrap {
+  flex-shrink: 0;
+}
+
+.song-admin-cover {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.placeholder-cover {
+  width: 88px;
+  height: 88px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+  text-align: center;
+  padding: 8px;
+}
+
+.song-admin-info {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .song-admin-top {
+    flex-direction: column;
+  }
+
+  .song-admin-cover,
+  .placeholder-cover {
+    width: 100%;
+    max-width: 140px;
+    height: 140px;
+  }
+}
