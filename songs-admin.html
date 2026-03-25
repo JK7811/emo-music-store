@@ -236,14 +236,23 @@
         placement === 'featured' ? 'placement-featured' : 'placement-regular';
 
       return `
-        <div class="song-admin-card">
-          <div class="song-admin-top">
-            <div>
-              <h3>${song.title || 'Untitled'}</h3>
-              <p class="song-admin-meta">${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
-              <p class="song-admin-sub">${song.title_en || '-'}</p>
-            </div>
-          </div>
+        return `
+  <div class="song-admin-card">
+    <div class="song-admin-top">
+      <div class="song-admin-cover-wrap">
+        ${
+          song.cover_url
+            ? `<img src="${song.cover_url}" alt="${song.title || 'cover'}" class="song-admin-cover" />`
+            : `<div class="song-admin-cover placeholder-cover">No Cover</div>`
+        }
+      </div>
+
+      <div class="song-admin-info">
+        <h3>${song.title || 'Untitled'}</h3>
+        <p class="song-admin-meta">${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
+        <p class="song-admin-sub">${song.title_en || '-'}</p>
+      </div>
+    </div>
 
           <div class="song-admin-badges">
             <span class="badge-chip ${placementClass}">${song.placement || 'regular'}</span>
