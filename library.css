@@ -682,3 +682,13 @@ body {
     height: 140px;
   }
 }
+
+.library-audio-player {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.library-audio-missing {
+  margin-top: 14px;
+  color: rgba(255,255,255,0.5);
+}
