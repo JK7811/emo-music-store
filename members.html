@@ -200,7 +200,8 @@
   const assignSongSelect = document.getElementById('assignSongSelect');
   const assignSongBtn = document.getElementById('assignSongBtn');
   const assignSongResult = document.getElementById('assignSongResult');
-
+const memberOwnedSongsList = document.getElementById('memberOwnedSongsList');
+    
   async function loadMembers() {
     const { data, error } = await supabase
       .from('profiles')
@@ -223,6 +224,55 @@
       `).join('')}
     `;
   }
+
+    assignMemberSelect.addEventListener('change', () => {
+  loadMemberOwnedSongs(assignMemberSelect.value);
+});
+    
+    async function loadMemberOwnedSongs(userId) {
+  if (!userId) {
+    memberOwnedSongsList.innerHTML = '<p>Please select a member / 请选择会员</p>';
+    return;
+  }
+
+  memberOwnedSongsList.innerHTML = '<p>Loading member songs...</p>';
+
+  const { data: memberSongs, error: memberSongsError } = await supabase
+    .from('member_songs')
+    .select('song_id')
+    .eq('user_id', userId);
+
+  if (memberSongsError) {
+    memberOwnedSongsList.innerHTML = `<p>Failed to load member songs: ${memberSongsError.message}</p>`;
+    return;
+  }
+
+  const songIds = (memberSongs || []).map(item => item.song_id);
+
+  if (songIds.length === 0) {
+    memberOwnedSongsList.innerHTML = '<p>This member does not own any songs yet / 这个会员还没有歌曲</p>';
+    return;
+  }
+
+  const { data: songs, error: songsError } = await supabase
+    .from('songs')
+    .select('id, title, title_en, artist, price_sgd')
+    .in('id', songIds)
+    .order('id', { ascending: true });
+
+  if (songsError) {
+    memberOwnedSongsList.innerHTML = `<p>Failed to load songs: ${songsError.message}</p>`;
+    return;
+  }
+
+  memberOwnedSongsList.innerHTML = (songs || []).map(song => `
+    <div class="member-owned-song-card">
+      <h3>${song.title || 'Untitled'}</h3>
+      <p>${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
+      <p>${song.title_en || '-'}</p>
+    </div>
+  `).join('');
+    }
 
   async function loadSongs() {
     const { data, error } = await supabase
@@ -289,8 +339,9 @@
     assignSongResult.textContent = 'Song assigned successfully / 分配成功';
     assignSongBtn.disabled = false;
     assignSongBtn.textContent = 'Assign Song / 分配歌曲';
+    loadMemberOwnedSongs(user_id);
   });
-
+    
   loadMembers();
   loadSongs();
   </script>
