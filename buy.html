@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Early Access - BrokenLoop</title>
+  <title>Buy Song - BrokenLoop</title>
   <link rel="stylesheet" href="buy.css" />
+  <link rel="icon" type="image/png" href="/brokenloop-favicon.png?v=3" />
+  <link rel="shortcut icon" href="/brokenloop-favicon.png?v=3" />
+  <link rel="apple-touch-icon" href="/brokenloop-favicon.png?v=3" />
 </head>
 <body>
   <div class="noise"></div>
@@ -12,151 +15,168 @@
   <div class="bg-glow glow-2"></div>
   <div class="bg-glow glow-3"></div>
 
-  <header class="site-header">
-  <a href="index.html" class="site-logo">BROKENLOOP</a>
-
-  <nav class="site-nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="about.html">About</a>
-    <a href="login.html">Login</a>
-  </nav>
-  </header>
-  
   <main class="page">
-    <header class="topbar">
-      <a href="song-detail.html" class="back">← Back / 返回单曲页</a>
-      <div class="brand">BROKENLOOP / EARLY ACCESS</div>
+    <header class="site-header">
+      <a href="index.html" class="site-logo">BROKENLOOP</a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
+      </nav>
     </header>
 
-    <section class="hero-card">
-      <div class="cover">
-        <div class="cover-tag-row">
-          <span class="tag hot">EARLY ACCESS</span>
-          <span class="tag new">COMING SOON</span>
-        </div>
-      </div>
+    <header class="topbar">
+      <a href="songs.html" class="back">← Back / 返回歌曲页</a>
+      <div class="brand">BROKENLOOP / BUY SONG</div>
+    </header>
 
-      <div class="content">
-        <div class="badge">STORE / 商店</div>
-
-        <h1>
-          慢慢的索嗨
-          <span>Man Man De Suo Hai</span>
-        </h1>
-
-        <div class="artist-row">
-          <div class="artist">BrokenLoop</div>
-          <div class="price">SGD 3.90</div>
-        </div>
-
-        <p class="desc">
-          商店功能即将开放。现在你看到的是 BrokenLoop 的早期版本。
-        </p>
-
-        <p class="desc en">
-          The store is opening soon. What you’re seeing now is an early version of BrokenLoop.
-        </p>
-
-        <div class="actions">
-          <a href="songs.html" class="button ghost">Back to Songs / 返回歌曲页</a>
-          <a href="index.html" class="button primary">Back Home / 返回首页</a>
-        </div>
-
-        <div class="note">
-          Full purchase and automatic unlock will be added in a future version.
-          <br />
-          未来版本会加入自动付款与完整版解锁功能。
-        </div>
+    <section class="buy-shell">
+      <div id="buySongCard" class="buy-card">
+        <p>Loading song...</p>
       </div>
     </section>
 
-    <section class="info-grid">
-      <section class="panel">
-        <div class="panel-head">
-          <h2>What’s Coming / 即将上线</h2>
-          <span>Roadmap</span>
-        </div>
-
-        <div class="feature-list">
-          <div class="feature-item">
-            <strong>Song checkout / 歌曲结账</strong>
-            <p>Users will be able to buy songs directly on the site. / 用户以后可直接在网站购买歌曲。</p>
-          </div>
-
-          <div class="feature-item">
-            <strong>Full unlock / 完整版解锁</strong>
-            <p>Purchased songs will unlock automatically. / 购买后歌曲会自动解锁。</p>
-          </div>
-
-          <div class="feature-item">
-            <strong>User accounts / 用户账号</strong>
-            <p>Fans will be able to log in and manage their library. / 未来可登录并管理已购歌曲。</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="panel-head">
-          <h2>Current Status / 当前状态</h2>
-          <span>Beta</span>
-        </div>
-
-        <div class="status-box">
-          <div class="status-row">
-            <span>Store Design / 商店界面</span>
-            <strong>Ready</strong>
-          </div>
-          <div class="status-row">
-            <span>Song Preview / 试听功能</span>
-            <strong>Ready</strong>
-          </div>
-          <div class="status-row">
-            <span>Admin UI / 后台雏形</span>
-            <strong>Ready</strong>
-          </div>
-          <div class="status-row">
-            <span>Payment / 付款系统</span>
-            <strong>Coming Soon</strong>
-          </div>
-          <div class="status-row">
-            <span>Auto Unlock / 自动解锁</span>
-            <strong>Coming Soon</strong>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <section class="panel waitlist-panel">
-      <div class="panel-head">
-        <h2>Why This Page Exists / 为什么现在先这样</h2>
-        <span>Note</span>
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <div class="footer-logo">BROKENLOOP</div>
+        <p>Loops for the hearts that stayed too long.</p>
       </div>
 
-      <div class="story-copy">
-        <p>
-          BrokenLoop 现在先把情绪、视觉和作品体验做出来，再慢慢把自动购买、自动解锁和用户系统接上。
-        </p>
-        <p>
-          Right now, BrokenLoop is focused on mood, visuals, and the listening experience first — then the full payment and unlock system will come later.
-        </p>
-        <p>
-          这不是半成品，而是一个正在成形中的作品型音乐商店。
-        </p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="about.html">About</a>
+        <a href="login.html">Login</a>
       </div>
-    </section>
-  <footer class="site-footer">
-  <div class="footer-brand">
-    <div class="footer-logo">BROKENLOOP</div>
-    <p>Loops for the hearts that stayed too long.</p>
-  </div>
+    </footer>
+  </main>
 
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="about.html">About</a>
-    <a href="login.html">Login</a>
-  </div>
-  </footer></main>
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+    const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const buySongCard = document.getElementById('buySongCard');
+
+    const params = new URLSearchParams(window.location.search);
+    const songId = params.get('song_id');
+
+    async function loadBuyPage() {
+      if (!songId) {
+        buySongCard.innerHTML = '<p>Missing song ID / 缺少歌曲编号</p>';
+        return;
+      }
+
+      const {
+        data: { session }
+      } = await supabase.auth.getSession();
+
+      if (!session || !session.user) {
+        window.location.href = `login.html?redirect=buy.html?song_id=${songId}`;
+        return;
+      }
+
+      const user = session.user;
+
+      const { data: song, error } = await supabase
+        .from('songs')
+        .select('*')
+        .eq('id', songId)
+        .maybeSingle();
+
+      if (error || !song) {
+        buySongCard.innerHTML = `<p>Song not found / 找不到歌曲</p>`;
+        return;
+      }
+
+      const { data: existingOwned } = await supabase
+        .from('member_songs')
+        .select('id')
+        .eq('user_id', user.id)
+        .eq('song_id', songId)
+        .maybeSingle();
+
+      buySongCard.innerHTML = `
+        <div class="buy-card-layout">
+          ${
+            song.cover_url
+              ? `<img src="${song.cover_url}" alt="${song.title || 'cover'}" class="buy-cover" />`
+              : `<div class="buy-cover placeholder">No Cover</div>`
+          }
+
+          <div class="buy-info">
+            <h1>${song.title || 'Untitled'}</h1>
+            <p class="buy-meta">${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
+            <p class="buy-sub">${song.title_en || '-'}</p>
+
+            ${
+              song.preview_url
+                ? `
+                  <audio controls preload="none" class="buy-player">
+                    <source src="${song.preview_url}" type="audio/mpeg" />
+                  </audio>
+                `
+                : `<p class="buy-note">Preview not available / 暂无试听</p>`
+            }
+
+            <div class="buy-actions">
+              ${
+                existingOwned
+                  ? `<a href="library.html" class="buy-btn owned-btn">Already Owned / 已拥有，去歌单</a>`
+                  : `<button id="confirmBuyBtn" class="buy-btn" type="button">Buy Now / 立即购买</button>`
+              }
+              <a href="songs.html" class="ghost-btn">Back to Songs / 返回歌曲页</a>
+            </div>
+
+            <div id="buyResult" class="buy-result"></div>
+          </div>
+        </div>
+      `;
+
+      const confirmBuyBtn = document.getElementById('confirmBuyBtn');
+      const buyResult = document.getElementById('buyResult');
+
+      if (confirmBuyBtn) {
+        confirmBuyBtn.addEventListener('click', async () => {
+          confirmBuyBtn.disabled = true;
+          confirmBuyBtn.textContent = 'Processing... / 处理中...';
+          buyResult.textContent = '';
+
+          const { error: insertError } = await supabase
+            .from('member_songs')
+            .insert({
+              user_id: user.id,
+              song_id: songId
+            });
+
+          if (insertError) {
+            const msg = (insertError.message || '').toLowerCase();
+
+            if (msg.includes('duplicate') || msg.includes('unique')) {
+              buyResult.textContent = 'You already own this song / 你已经拥有这首歌';
+            } else {
+              buyResult.textContent = 'Purchase failed / 购买失败：' + insertError.message;
+            }
+
+            confirmBuyBtn.disabled = false;
+            confirmBuyBtn.textContent = 'Buy Now / 立即购买';
+            return;
+          }
+
+          buyResult.textContent = 'Purchase successful / 购买成功，正在跳转到收藏...';
+
+          setTimeout(() => {
+            window.location.href = 'library.html';
+          }, 1000);
+        });
+      }
+    }
+
+    loadBuyPage();
+  </script>
 </body>
 </html>
