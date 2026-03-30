@@ -113,83 +113,7 @@
       <div>
         <div class="mini-label">OWNED TRACKS / 已拥有歌曲</div>
         <h2>My Collection / 我的收藏</h2>
-      </div>
-      <div class="section-note">Songs saved to your account / 保存在账号中的歌曲</div>
-    </section>
-
-    <section class="library-grid">
-      <article class="song-card">
-        <div class="cover cover-1"></div>
-        <div class="content">
-          <div class="meta">
-            <div>
-              <h3>慢慢的索嗨</h3>
-              <div class="artist">BrokenLoop</div>
-            </div>
-            <div class="owned">Owned / 已拥有</div>
-          </div>
-
-          <p class="desc">
-            会员已购歌曲示意。未来这里会显示你的真实购买记录与完整播放权限。
-          </p>
-
-          <audio controls preload="none" class="player">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
-          </audio>
-        </div>
-      </article>
-
-      <article class="song-card">
-        <div class="cover cover-2"></div>
-        <div class="content">
-          <div class="meta">
-            <div>
-              <h3>Midnight Loop</h3>
-              <div class="artist">BrokenLoop</div>
-            </div>
-            <div class="owned">Owned / 已拥有</div>
-          </div>
-
-          <p class="desc">
-            已购歌曲以后会出现在这里，成为你的个人歌单内容。
-          </p>
-
-          <audio controls preload="none" class="player">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg" />
-          </audio>
-        </div>
-      </article>
-    </section>
-
-    <section class="section-head second-head">
-      <div>
-        <div class="mini-label">LOCKED TRACKS / 未解锁歌曲</div>
-        <h2>Not Yet Owned / 尚未拥有</h2>
-      </div>
-      <div class="section-note">Preview available, full access locked / 可试听，完整版未解锁</div>
-    </section>
-
-    <section class="library-grid">
-      <article class="song-card">
-        <div class="cover cover-3"></div>
-        <div class="content">
-          <div class="meta">
-            <div>
-              <h3>Afterlove Demo</h3>
-              <div class="artist">BrokenLoop</div>
-            </div>
-            <div class="locked">Locked / 未拥有</div>
-          </div>
-
-          <p class="desc">
-            未购买歌曲示意。未来未解锁歌曲可显示为 locked 状态，或不出现在歌单中。
-          </p>
-
-          <div class="actions">
-            <a href="buy.html" class="button primary">Buy Song / 购买歌曲</a>
-            <a href="songs.html" class="button ghost">Browse Songs / 浏览歌曲</a>
-          </div>
-        </div>
+        <div id="ownedSongsList" class="library-song-list"></div>
       </article>
     </section>
 
@@ -218,6 +142,7 @@
   const memberEmail = document.getElementById('memberEmail');
   const memberAvatar = document.getElementById('memberAvatar');
   const logoutBtn = document.getElementById('logoutBtn');
+  const ownedSongsList = document.getElementById('ownedSongsList');
 
   async function loadSession() {
     const {
@@ -229,32 +154,83 @@
       return;
     }
 
-    const email = session.user.email || 'member@brokenloop.com';
+    const user = session.user;
+    const email = user.email || 'member@brokenloop.com';
     memberEmail.textContent = email;
     memberAvatar.textContent = email.charAt(0).toUpperCase();
 
-    const { data, error } = await supabase
+    const { data: profileData } = await supabase
       .from('profiles')
       .select('member_id, display_name, avatar_url')
-      .eq('id', session.user.id)
+      .eq('id', user.id)
       .maybeSingle();
 
-    if (error || !data || !data.member_id || data.member_id.trim() === '') {
+    if (!profileData || !profileData.member_id || profileData.member_id.trim() === '') {
       window.location.href = 'profile.html';
       return;
     }
 
-    if (data.display_name && data.display_name.trim() !== '') {
-      memberEmail.textContent = data.display_name;
+    if (profileData.display_name && profileData.display_name.trim() !== '') {
+      memberEmail.textContent = profileData.display_name;
     }
 
-    if (data.avatar_url && data.avatar_url.trim() !== '') {
-      memberAvatar.style.backgroundImage = `url('${data.avatar_url}')`;
+    if (profileData.avatar_url && profileData.avatar_url.trim() !== '') {
+      memberAvatar.style.backgroundImage = `url('${profileData.avatar_url}')`;
       memberAvatar.style.backgroundSize = 'cover';
       memberAvatar.style.backgroundPosition = 'center';
       memberAvatar.style.backgroundRepeat = 'no-repeat';
       memberAvatar.textContent = '';
     }
+
+    await loadOwnedSongs(user.id);
+  }
+
+  async function loadOwnedSongs(userId) {
+    ownedSongsList.innerHTML = '<p>Loading your songs...</p>';
+
+    const { data: memberSongs, error: memberSongsError } = await supabase
+      .from('member_songs')
+      .select('song_id')
+      .eq('user_id', userId);
+
+    if (memberSongsError) {
+      ownedSongsList.innerHTML = `<p>Failed to load library: ${memberSongsError.message}</p>`;
+      return;
+    }
+
+    const songIds = (memberSongs || []).map(item => item.song_id);
+
+    if (songIds.length === 0) {
+      ownedSongsList.innerHTML = '<p>You do not own any songs yet. / 你目前还没有已拥有歌曲。</p>';
+      return;
+    }
+
+    const { data: songs, error: songsError } = await supabase
+      .from('songs')
+      .select('*')
+      .in('id', songIds)
+      .order('id', { ascending: true });
+
+    if (songsError) {
+      ownedSongsList.innerHTML = `<p>Failed to load songs: ${songsError.message}</p>`;
+      return;
+    }
+
+    ownedSongsList.innerHTML = (songs || []).map(song => `
+      <div class="library-song-card">
+        ${
+          song.cover_url
+            ? `<img src="${song.cover_url}" alt="${song.title || 'cover'}" class="library-song-cover" />`
+            : `<div class="library-song-cover placeholder">No Cover</div>`
+        }
+
+        <div class="library-song-info">
+          <h3>${song.title || 'Untitled'}</h3>
+          <p>${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
+          <p>${song.title_en || '-'}</p>
+        </div>
+      </div>
+    `).join('');
   }
 
   logoutBtn.addEventListener('click', async () => {
@@ -263,6 +239,6 @@
   });
 
   loadSession();
-</script>
+  </script>
 </body>
 </html>
