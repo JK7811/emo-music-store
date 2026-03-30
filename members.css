@@ -428,3 +428,27 @@ select {
     text-align: center;
   }
 }
+
+.member-owned-songs-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.member-owned-song-card {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.member-owned-song-card h3 {
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.member-owned-song-card p {
+  margin: 6px 0;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+}
