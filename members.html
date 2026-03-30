@@ -170,5 +170,134 @@
       </div>
     </footer>
   </main>
+
+  <section class="panel">
+  <div class="panel-head">
+    <h2>Assign Song to Member / 分配歌曲给会员</h2>
+    <span>Select member and song</span>
+  </div>
+
+  <div class="assign-form-grid">
+    <select id="assignMemberSelect">
+      <option value="">Select Member / 选择会员</option>
+    </select>
+
+    <select id="assignSongSelect">
+      <option value="">Select Song / 选择歌曲</option>
+    </select>
+
+    <button id="assignSongBtn" class="add-btn" type="button">
+      Assign Song / 分配歌曲
+    </button>
+  </div>
+
+  <div id="assignSongResult" class="assign-result"></div>
+  </section>
+
+  <script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const supabaseUrl = 'https://ptoshuzzjqbbdqzrlhco.supabase.co';
+  const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const assignMemberSelect = document.getElementById('assignMemberSelect');
+  const assignSongSelect = document.getElementById('assignSongSelect');
+  const assignSongBtn = document.getElementById('assignSongBtn');
+  const assignSongResult = document.getElementById('assignSongResult');
+
+  async function loadMembers() {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id, member_id, display_name')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      assignSongResult.textContent = 'Failed to load members / 读取会员失败';
+      return;
+    }
+
+    const members = data || [];
+
+    assignMemberSelect.innerHTML = `
+      <option value="">Select Member / 选择会员</option>
+      ${members.map(member => `
+        <option value="${member.id}">
+          ${member.display_name || member.member_id || member.id}
+        </option>
+      `).join('')}
+    `;
+  }
+
+  async function loadSongs() {
+    const { data, error } = await supabase
+      .from('songs')
+      .select('id, title')
+      .order('id', { ascending: true });
+
+    if (error) {
+      assignSongResult.textContent = 'Failed to load songs / 读取歌曲失败';
+      return;
+    }
+
+    const songs = data || [];
+
+    assignSongSelect.innerHTML = `
+      <option value="">Select Song / 选择歌曲</option>
+      ${songs.map(song => `
+        <option value="${song.id}">
+          ${song.title || 'Untitled'}
+        </option>
+      `).join('')}
+    `;
+  }
+
+  assignSongBtn.addEventListener('click', async () => {
+    const user_id = assignMemberSelect.value;
+    const song_id = assignSongSelect.value;
+
+    if (!user_id) {
+      alert('Please select a member / 请选择会员');
+      return;
+    }
+
+    if (!song_id) {
+      alert('Please select a song / 请选择歌曲');
+      return;
+    }
+
+    assignSongBtn.disabled = true;
+    assignSongBtn.textContent = 'Assigning... / 分配中...';
+    assignSongResult.textContent = '';
+
+    const { error } = await supabase
+      .from('member_songs')
+      .insert({
+        user_id,
+        song_id
+      });
+
+    if (error) {
+      const msg = (error.message || '').toLowerCase();
+
+      if (msg.includes('duplicate') || msg.includes('unique')) {
+        assignSongResult.textContent = 'This member already has this song / 这个会员已经拥有这首歌';
+      } else {
+        assignSongResult.textContent = 'Assign failed / 分配失败：' + error.message;
+      }
+
+      assignSongBtn.disabled = false;
+      assignSongBtn.textContent = 'Assign Song / 分配歌曲';
+      return;
+    }
+
+    assignSongResult.textContent = 'Song assigned successfully / 分配成功';
+    assignSongBtn.disabled = false;
+    assignSongBtn.textContent = 'Assign Song / 分配歌曲';
+  });
+
+  loadMembers();
+  loadSongs();
+  </script>
 </body>
 </html>
