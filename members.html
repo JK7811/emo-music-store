@@ -238,9 +238,9 @@ const memberOwnedSongsList = document.getElementById('memberOwnedSongsList');
   memberOwnedSongsList.innerHTML = '<p>Loading member songs...</p>';
 
   const { data: memberSongs, error: memberSongsError } = await supabase
-    .from('member_songs')
-    .select('song_id')
-    .eq('user_id', userId);
+  .from('member_songs')
+  .select('id, song_id')
+  .eq('user_id', userId);
 
   if (memberSongsError) {
     memberOwnedSongsList.innerHTML = `<p>Failed to load member songs: ${memberSongsError.message}</p>`;
@@ -248,6 +248,10 @@ const memberOwnedSongsList = document.getElementById('memberOwnedSongsList');
   }
 
   const songIds = (memberSongs || []).map(item => item.song_id);
+      const memberSongMap = {};
+(memberSongs || []).forEach(item => {
+  memberSongMap[item.song_id] = item.id;
+});
 
   if (songIds.length === 0) {
     memberOwnedSongsList.innerHTML = '<p>This member does not own any songs yet / 这个会员还没有歌曲</p>';
@@ -266,12 +270,49 @@ const memberOwnedSongsList = document.getElementById('memberOwnedSongsList');
   }
 
   memberOwnedSongsList.innerHTML = (songs || []).map(song => `
-    <div class="member-owned-song-card">
-      <h3>${song.title || 'Untitled'}</h3>
-      <p>${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
-      <p>${song.title_en || '-'}</p>
+  <div class="member-owned-song-card">
+    <h3>${song.title || 'Untitled'}</h3>
+    <p>${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
+    <p>${song.title_en || '-'}</p>
+
+    <div class="member-owned-song-actions">
+      <button
+        class="mini-btn danger-btn remove-member-song-btn"
+        data-member-song-id="${memberSongMap[song.id]}"
+      >
+        Remove / 移除
+      </button>
     </div>
-  `).join('');
+  </div>
+`).join('');
+
+      document.querySelectorAll('.remove-member-song-btn').forEach(button => {
+  button.addEventListener('click', async () => {
+    const memberSongId = button.dataset.memberSongId;
+
+    const ok = confirm('Remove this song from member? / 确定把这首歌从会员歌单移除吗？');
+    if (!ok) return;
+
+    const { data, error } = await supabase
+      .from('member_songs')
+      .delete()
+      .eq('id', memberSongId)
+      .select();
+
+    if (error) {
+      alert('Remove failed / 移除失败：' + error.message);
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      alert('No song was removed / 没有真的移除到这首歌');
+      return;
+    }
+
+    alert('Song removed / 歌曲已移除');
+    loadMemberOwnedSongs(userId);
+  });
+});
     }
 
   async function loadSongs() {
