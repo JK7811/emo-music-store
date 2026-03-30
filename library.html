@@ -216,21 +216,37 @@
       return;
     }
 
-    ownedSongsList.innerHTML = (songs || []).map(song => `
-      <div class="library-song-card">
-        ${
-          song.cover_url
-            ? `<img src="${song.cover_url}" alt="${song.title || 'cover'}" class="library-song-cover" />`
-            : `<div class="library-song-cover placeholder">No Cover</div>`
-        }
+    ownedSongsList.innerHTML = (songs || []).map(song => {
+  const playableUrl = song.full_url || song.preview_url || '';
 
-        <div class="library-song-info">
-          <h3>${song.title || 'Untitled'}</h3>
-          <p>${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
-          <p>${song.title_en || '-'}</p>
-        </div>
+  return `
+    <div class="library-song-card">
+      ${
+        song.cover_url
+          ? `<img src="${song.cover_url}" alt="${song.title || 'cover'}" class="library-song-cover" />`
+          : `<div class="library-song-cover placeholder">No Cover</div>`
+      }
+
+      <div class="library-song-info">
+        <h3>${song.title || 'Untitled'}</h3>
+        <p>${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
+        <p>${song.title_en || '-'}</p>
+
+        ${
+          playableUrl
+            ? `
+              <audio controls preload="none" class="library-audio-player">
+                <source src="${playableUrl}" type="audio/mpeg" />
+              </audio>
+            `
+            : `
+              <p class="library-audio-missing">Audio not available / 暂无音频</p>
+            `
+        }
       </div>
-    `).join('');
+    </div>
+  `;
+}).join('');
   }
 
   logoutBtn.addEventListener('click', async () => {
