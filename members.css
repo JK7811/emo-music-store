@@ -452,3 +452,24 @@ select {
   color: rgba(255,255,255,0.72);
   line-height: 1.7;
 }
+
+.member-owned-song-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.mini-btn {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font: inherit;
+}
+
+.danger-btn {
+  background: rgba(239,68,68,0.14);
+  border-color: rgba(239,68,68,0.24);
+  color: #ffb0b0;
+}
