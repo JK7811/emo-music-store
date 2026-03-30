@@ -617,3 +617,68 @@ body {
     text-align: center;
   }
 }
+
+.library-song-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.library-song-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.library-song-cover {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+.library-song-cover.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+  text-align: center;
+  padding: 8px;
+}
+
+.library-song-info {
+  flex: 1;
+}
+
+.library-song-info h3 {
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.library-song-info p {
+  margin: 6px 0;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+  .library-song-card {
+    flex-direction: column;
+  }
+
+  .library-song-cover,
+  .library-song-cover.placeholder {
+    width: 100%;
+    max-width: 140px;
+    height: 140px;
+  }
+}
