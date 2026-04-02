@@ -122,13 +122,13 @@
   const loginEmail = document.getElementById('loginEmail');
   const loginPassword = document.getElementById('loginPassword');
   const loginBtn = document.getElementById('loginBtn');
-
+  const redirectTarget = new URLSearchParams(window.location.search).get('redirect');
   const {
     data: { session }
   } = await supabase.auth.getSession();
 
   if (session) {
-    window.location.href = 'library.html';
+    window.location.href = redirectTarget || 'library.html';
   }
 
   loginBtn.addEventListener('click', async () => {
@@ -149,13 +149,11 @@
     });
 
     if (error) {
-      alert('Login failed / 登录失败：' + error.message);
-      loginBtn.disabled = false;
-      loginBtn.textContent = 'Sign In / 登录';
-      return;
-    }
+  loginResult.textContent = 'Login failed / 登录失败：' + error.message;
+  return;
+}
 
-    window.location.href = 'library.html';
+window.location.href = redirectTarget || 'library.html';
   });
   </script>
 </body>
