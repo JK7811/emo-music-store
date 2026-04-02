@@ -141,6 +141,25 @@
 
   <div id="previewUploadResult" class="upload-result"></div>
     </section>
+
+    <section class="panel">
+  <div class="panel-head">
+    <h2>Upload Cover / 上传封面</h2>
+    <span>Select song and upload cover image</span>
+  </div>
+
+  <div class="upload-form-grid">
+    <select id="coverSongSelect">
+      <option value="">Select Song / 选择歌曲</option>
+    </select>
+
+    <input id="coverFileInput" type="file" accept="image/*" />
+
+    <button id="uploadCoverBtn" class="add-btn" type="button">Upload Cover / 上传封面</button>
+  </div>
+
+  <div id="coverUploadResult" class="upload-result"></div>
+    </section>
     
     <section class="panel notes-panel">
       <div class="panel-head">
@@ -178,26 +197,7 @@
       </div>
     </footer>
   </main>
-
-  <section class="panel">
-  <div class="panel-head">
-    <h2>Upload Cover / 上传封面</h2>
-    <span>Select song and upload cover image</span>
-  </div>
-
-  <div class="upload-form-grid">
-    <select id="coverSongSelect">
-      <option value="">Select Song / 选择歌曲</option>
-    </select>
-
-    <input id="coverFileInput" type="file" accept="image/*" />
-
-    <button id="uploadCoverBtn" class="add-btn" type="button">Upload Cover / 上传封面</button>
-  </div>
-
-  <div id="coverUploadResult" class="upload-result"></div>
-  </section>
-
+  
   <script type="module">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
