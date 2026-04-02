@@ -42,42 +42,15 @@
       </p>
     </section>
 
-    <section class="featured-card">
-      <div class="featured-cover"></div>
+    <section class="section-block">
+  <div class="section-head">
+    <div>
+      <div class="mini-label">FEATURED SONG / 主打歌曲</div>
+      <h2>Featured Song / 主打歌曲</h2>
+    </div>
+  </div>
 
-      <div class="featured-content">
-        <div class="featured-top">
-          <div class="tag-row">
-            <span class="tag hot">HOT / 热门</span>
-            <span class="tag new">NEW / 新歌</span>
-          </div>
-          <div class="featured-price">SGD 3.90</div>
-        </div>
-
-        <h2>
-          慢慢的索嗨
-          <span>Man Man De Suo Hai</span>
-        </h2>
-
-        <p class="featured-desc">
-          一首关于失眠、备胎、反复心软的歌。
-        </p>
-
-        <p class="featured-desc en">
-          A song about sleepless nights, being the backup, and never fully letting go.
-        </p>
-
-        <audio controls preload="none" class="player">
-          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
-        </audio>
-
-        <div class="featured-actions">
-          <a href="buy.html?song_id=1" class="button primary">View Details / 查看详情</a>
-<a href="buy.html?song_id=1" class="button ghost">Buy Song / 购买歌曲</a>
-        </div>
-
-        <div class="note">Preview is limited to 30 seconds / 试听限制 30 秒</div>
-      </div>
+  <div id="featuredSongCard"></div>
     </section>
 
     <section class="section-head">
@@ -120,7 +93,62 @@
   const supabaseKey = 'sb_publishable_lxT1yF6WOgpN7uK3AQVoSA_5yKDlLui';
   const supabase = createClient(supabaseUrl, supabaseKey);
 
+  const featuredSongCard = document.getElementById('featuredSongCard');
   const songsPageList = document.getElementById('songsPageList');
+
+  async function loadFeaturedSong() {
+    featuredSongCard.innerHTML = '<p>Loading featured song...</p>';
+
+    const { data, error } = await supabase
+      .from('songs')
+      .select('*')
+      .eq('status', 'published')
+      .eq('placement', 'featured')
+      .order('id', { ascending: true })
+      .limit(1);
+
+    if (error) {
+      featuredSongCard.innerHTML = `<p>Failed to load featured song: ${error.message}</p>`;
+      return;
+    }
+
+    const song = (data || [])[0];
+
+    if (!song) {
+      featuredSongCard.innerHTML = '<p>No featured song yet.</p>';
+      return;
+    }
+
+    featuredSongCard.innerHTML = `
+      <div class="song-page-card featured-song-card">
+        ${
+          song.cover_url
+            ? `<img src="${song.cover_url}" alt="${song.title || 'cover'}" class="song-page-cover" />`
+            : `<div class="song-page-cover placeholder">No Cover</div>`
+        }
+
+        <div class="song-page-info">
+          <h3>${song.title || 'Untitled'}</h3>
+          <p>${song.artist || '-'} · SGD ${song.price_sgd ?? '-'}</p>
+          <p>${song.title_en || '-'}</p>
+
+          ${
+            song.preview_url
+              ? `
+                <audio controls preload="none" class="song-page-player">
+                  <source src="${song.preview_url}" type="audio/mpeg" />
+                </audio>
+              `
+              : `<p>Preview not available / 暂无试听</p>`
+          }
+
+          <div class="song-page-actions">
+            <a href="buy.html?song_id=${song.id}" class="buy-btn">Buy Song / 购买歌曲</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
 
   async function loadSongsPage() {
     songsPageList.innerHTML = '<p>Loading songs...</p>';
@@ -174,6 +202,7 @@
     `).join('');
   }
 
+  loadFeaturedSong();
   loadSongsPage();
   </script>
 </body>
